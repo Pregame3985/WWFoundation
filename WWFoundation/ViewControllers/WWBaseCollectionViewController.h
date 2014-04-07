@@ -1,5 +1,5 @@
 //
-//  WWBaseTableViewController.h
+//  WWCollectionViewController.h
 //  WWFoundation
 //
 //  Created by William Wu on 4/4/14.
@@ -8,9 +8,9 @@
 
 #import "WWBaseViewController.h"
 
-@interface WWBaseTableViewController : WWBaseViewController
+@interface WWBaseCollectionViewController : WWBaseViewController
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 

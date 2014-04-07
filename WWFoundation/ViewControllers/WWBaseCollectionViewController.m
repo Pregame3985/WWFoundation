@@ -1,18 +1,18 @@
 //
 //  WWCollectionViewController.m
-//  WWFoundationDemo
+//  WWFoundation
 //
 //  Created by William Wu on 4/4/14.
 //  Copyright (c) 2014 WW. All rights reserved.
 //
 
-#import "WWCollectionViewController.h"
+#import "WWBaseCollectionViewController.h"
 
-@interface WWCollectionViewController ()
+@interface WWBaseCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
 
-@implementation WWCollectionViewController
+@implementation WWBaseCollectionViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,5 +45,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.dataArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
 
 @end

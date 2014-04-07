@@ -1,6 +1,6 @@
 //
 //  WWBaseTableViewController.m
-//  WWFoundationDemo
+//  WWFoundation
 //
 //  Created by William Wu on 4/4/14.
 //  Copyright (c) 2014 WW. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "WWBaseTableViewController.h"
 
-@interface WWBaseTableViewController ()
+@interface WWBaseTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -45,5 +45,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
 
 @end
