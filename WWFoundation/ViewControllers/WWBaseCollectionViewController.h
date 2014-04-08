@@ -10,7 +10,7 @@
 
 @interface WWBaseCollectionViewController : WWBaseViewController
 
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, unsafe_unretained) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 

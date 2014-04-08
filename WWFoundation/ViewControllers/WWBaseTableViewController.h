@@ -10,7 +10,7 @@
 
 @interface WWBaseTableViewController : WWBaseViewController
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, unsafe_unretained) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
