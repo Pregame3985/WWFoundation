@@ -46,4 +46,19 @@
 }
 */
 
+- (IBAction)back:(UIButton *)sender
+{
+    if (self.navigationController)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (IBAction)cancel:(UIButton *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 @end

@@ -10,4 +10,8 @@
 
 @interface WWBaseViewController : UIViewController
 
+- (IBAction)back:(UIButton *)sender;
+
+- (IBAction)cancel:(UIButton *)sender;
+
 @end
