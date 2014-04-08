@@ -28,7 +28,6 @@
 		3D6D9D1D18EE641B001FBC58 /* WWBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1718EE641B001FBC58 /* WWBaseTableViewController.m */; };
 		3D6D9D1E18EE641B001FBC58 /* WWBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1918EE641B001FBC58 /* WWBaseViewController.m */; };
 		3D6D9D1F18EE641B001FBC58 /* WWBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1B18EE641B001FBC58 /* WWBaseCollectionViewController.m */; };
-		3DB82BCD18F339C000BAA866 /* UIImage+WWFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB82BCC18F339C000BAA866 /* UIImage+WWFoundation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +74,6 @@
 		3D6D9D1918EE641B001FBC58 /* WWBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseViewController.m; sourceTree = "<group>"; };
 		3D6D9D1A18EE641B001FBC58 /* WWBaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseCollectionViewController.h; sourceTree = "<group>"; };
 		3D6D9D1B18EE641B001FBC58 /* WWBaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseCollectionViewController.m; sourceTree = "<group>"; };
-		3DB82BCB18F339C000BAA866 /* UIImage+WWFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WWFoundation.h"; sourceTree = "<group>"; };
-		3DB82BCC18F339C000BAA866 /* UIImage+WWFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WWFoundation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +107,6 @@
 				3D0678A418F2D40200C10D65 /* NSFileManager+WWFoundation.m */,
 				3D0678A718F2D6EC00C10D65 /* UIView+WWFoundation.h */,
 				3D0678A818F2D6EC00C10D65 /* UIView+WWFoundation.m */,
-				3DB82BCB18F339C000BAA866 /* UIImage+WWFoundation.h */,
-				3DB82BCC18F339C000BAA866 /* UIImage+WWFoundation.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -324,7 +319,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DB82BCD18F339C000BAA866 /* UIImage+WWFoundation.m in Sources */,
 				3D6D9CE118EE5A6F001FBC58 /* WWAppDelegate.m in Sources */,
 				3D0678A918F2D6EC00C10D65 /* UIView+WWFoundation.m in Sources */,
 				3D0678AC18F2D80D00C10D65 /* WWGridView.m in Sources */,
