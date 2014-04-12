@@ -20,25 +20,10 @@
 		3D6D9CE718EE5A6F001FBC58 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6D9CE518EE5A6F001FBC58 /* Main_iPad.storyboard */; };
 		3D6D9CEA18EE5A6F001FBC58 /* WWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9CE918EE5A6F001FBC58 /* WWViewController.m */; };
 		3D6D9CEC18EE5A6F001FBC58 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D6D9CEB18EE5A6F001FBC58 /* Images.xcassets */; };
-		3D6D9CF318EE5A6F001FBC58 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CF218EE5A6F001FBC58 /* XCTest.framework */; };
-		3D6D9CF418EE5A6F001FBC58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CD018EE5A6F001FBC58 /* Foundation.framework */; };
-		3D6D9CF518EE5A6F001FBC58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CD418EE5A6F001FBC58 /* UIKit.framework */; };
-		3D6D9CFD18EE5A6F001FBC58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D6D9CFB18EE5A6F001FBC58 /* InfoPlist.strings */; };
-		3D6D9CFF18EE5A6F001FBC58 /* WWFoundationDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9CFE18EE5A6F001FBC58 /* WWFoundationDemoTests.m */; };
 		3D6D9D1D18EE641B001FBC58 /* WWBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1718EE641B001FBC58 /* WWBaseTableViewController.m */; };
 		3D6D9D1E18EE641B001FBC58 /* WWBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1918EE641B001FBC58 /* WWBaseViewController.m */; };
 		3D6D9D1F18EE641B001FBC58 /* WWBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1B18EE641B001FBC58 /* WWBaseCollectionViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3D6D9CF618EE5A6F001FBC58 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D6D9CC518EE5A6F001FBC58 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D6D9CCC18EE5A6F001FBC58;
-			remoteInfo = WWFoundationDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3D0678A318F2D40200C10D65 /* NSFileManager+WWFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+WWFoundation.h"; sourceTree = "<group>"; };
@@ -63,8 +48,6 @@
 		3D6D9CE818EE5A6F001FBC58 /* WWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWViewController.h; sourceTree = "<group>"; };
 		3D6D9CE918EE5A6F001FBC58 /* WWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWViewController.m; sourceTree = "<group>"; };
 		3D6D9CEB18EE5A6F001FBC58 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3D6D9CF118EE5A6F001FBC58 /* WWFoundationDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWFoundationDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D6D9CF218EE5A6F001FBC58 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3D6D9CFA18EE5A6F001FBC58 /* WWFoundationDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WWFoundationDemoTests-Info.plist"; sourceTree = "<group>"; };
 		3D6D9CFC18EE5A6F001FBC58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D6D9CFE18EE5A6F001FBC58 /* WWFoundationDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWFoundationDemoTests.m; sourceTree = "<group>"; };
@@ -84,16 +67,6 @@
 				3D6D9CD318EE5A6F001FBC58 /* CoreGraphics.framework in Frameworks */,
 				3D6D9CD518EE5A6F001FBC58 /* UIKit.framework in Frameworks */,
 				3D6D9CD118EE5A6F001FBC58 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D6D9CEE18EE5A6F001FBC58 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D6D9CF318EE5A6F001FBC58 /* XCTest.framework in Frameworks */,
-				3D6D9CF518EE5A6F001FBC58 /* UIKit.framework in Frameworks */,
-				3D6D9CF418EE5A6F001FBC58 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				3D6D9CCD18EE5A6F001FBC58 /* WWFoundationDemo.app */,
-				3D6D9CF118EE5A6F001FBC58 /* WWFoundationDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,7 +108,6 @@
 				3D6D9CD018EE5A6F001FBC58 /* Foundation.framework */,
 				3D6D9CD218EE5A6F001FBC58 /* CoreGraphics.framework */,
 				3D6D9CD418EE5A6F001FBC58 /* UIKit.framework */,
-				3D6D9CF218EE5A6F001FBC58 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -240,24 +211,6 @@
 			productReference = 3D6D9CCD18EE5A6F001FBC58 /* WWFoundationDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3D6D9CF018EE5A6F001FBC58 /* WWFoundationDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D6D9D0518EE5A6F001FBC58 /* Build configuration list for PBXNativeTarget "WWFoundationDemoTests" */;
-			buildPhases = (
-				3D6D9CED18EE5A6F001FBC58 /* Sources */,
-				3D6D9CEE18EE5A6F001FBC58 /* Frameworks */,
-				3D6D9CEF18EE5A6F001FBC58 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3D6D9CF718EE5A6F001FBC58 /* PBXTargetDependency */,
-			);
-			name = WWFoundationDemoTests;
-			productName = WWFoundationDemoTests;
-			productReference = 3D6D9CF118EE5A6F001FBC58 /* WWFoundationDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -267,11 +220,6 @@
 				CLASSPREFIX = WW;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = WW;
-				TargetAttributes = {
-					3D6D9CF018EE5A6F001FBC58 = {
-						TestTargetID = 3D6D9CCC18EE5A6F001FBC58;
-					};
-				};
 			};
 			buildConfigurationList = 3D6D9CC818EE5A6F001FBC58 /* Build configuration list for PBXProject "WWFoundationDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -287,7 +235,6 @@
 			projectRoot = "";
 			targets = (
 				3D6D9CCC18EE5A6F001FBC58 /* WWFoundationDemo */,
-				3D6D9CF018EE5A6F001FBC58 /* WWFoundationDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,14 +248,6 @@
 				3D6D9CEC18EE5A6F001FBC58 /* Images.xcassets in Resources */,
 				3D6D9CE418EE5A6F001FBC58 /* Main_iPhone.storyboard in Resources */,
 				3D6D9CDB18EE5A6F001FBC58 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D6D9CEF18EE5A6F001FBC58 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D6D9CFD18EE5A6F001FBC58 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,23 +270,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D6D9CED18EE5A6F001FBC58 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D6D9CFF18EE5A6F001FBC58 /* WWFoundationDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3D6D9CF718EE5A6F001FBC58 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3D6D9CCC18EE5A6F001FBC58 /* WWFoundationDemo */;
-			targetProxy = 3D6D9CF618EE5A6F001FBC58 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3D6D9CD918EE5A6F001FBC58 /* InfoPlist.strings */ = {
@@ -485,46 +408,6 @@
 			};
 			name = Release;
 		};
-		3D6D9D0618EE5A6F001FBC58 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WWFoundationDemo.app/WWFoundationDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WWFoundationDemo/WWFoundationDemo-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "WWFoundationDemoTests/WWFoundationDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		3D6D9D0718EE5A6F001FBC58 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WWFoundationDemo.app/WWFoundationDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WWFoundationDemo/WWFoundationDemo-Prefix.pch";
-				INFOPLIST_FILE = "WWFoundationDemoTests/WWFoundationDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -542,15 +425,6 @@
 			buildConfigurations = (
 				3D6D9D0318EE5A6F001FBC58 /* Debug */,
 				3D6D9D0418EE5A6F001FBC58 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D6D9D0518EE5A6F001FBC58 /* Build configuration list for PBXNativeTarget "WWFoundationDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D6D9D0618EE5A6F001FBC58 /* Debug */,
-				3D6D9D0718EE5A6F001FBC58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
