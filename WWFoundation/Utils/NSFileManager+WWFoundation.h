@@ -18,4 +18,6 @@
 - (NSString *) documentPath;
 - (NSString *) temporaryPath;
 
+- (BOOL)fileExistsAtPath:(NSString *)path fileName:(NSString *)fileName;
+
 @end
