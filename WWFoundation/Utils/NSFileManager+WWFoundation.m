@@ -44,7 +44,7 @@
     return NSTemporaryDirectory();
 }
 
-- (BOOL) fileExistsAtPath:(NSString *)path fileName:(NSString *)fileName;
+- (NSString *)fullPath:(NSString *)path fileName:(NSString *)fileName
 {
     NSString *fullPath;
     
@@ -54,7 +54,7 @@
         
         if (!(fileNameArray.count >= 1 || fileNameArray.count <= 2))
         {
-            return NO;
+            return nil;
         }
         
         if (fileNameArray.count == 1)
@@ -71,7 +71,7 @@
         fullPath = [[NSURL fileURLWithPathComponents:@[path, fileName]] path];
     }
     
-    return [self fileExistsAtPath:fullPath isDirectory:NO];
+    return fullPath;
 }
 
 @end
