@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D0678A518F2D40200C10D65 /* NSFileManager+WWFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0678A418F2D40200C10D65 /* NSFileManager+WWFoundation.m */; };
-		3D0678A918F2D6EC00C10D65 /* UIView+WWFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0678A818F2D6EC00C10D65 /* UIView+WWFoundation.m */; };
-		3D0678AC18F2D80D00C10D65 /* WWGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0678AB18F2D80D00C10D65 /* WWGridView.m */; };
 		3D6D9CD118EE5A6F001FBC58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CD018EE5A6F001FBC58 /* Foundation.framework */; };
 		3D6D9CD318EE5A6F001FBC58 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CD218EE5A6F001FBC58 /* CoreGraphics.framework */; };
 		3D6D9CD518EE5A6F001FBC58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CD418EE5A6F001FBC58 /* UIKit.framework */; };
@@ -20,19 +17,20 @@
 		3D6D9CE718EE5A6F001FBC58 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6D9CE518EE5A6F001FBC58 /* Main_iPad.storyboard */; };
 		3D6D9CEA18EE5A6F001FBC58 /* WWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9CE918EE5A6F001FBC58 /* WWViewController.m */; };
 		3D6D9CEC18EE5A6F001FBC58 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D6D9CEB18EE5A6F001FBC58 /* Images.xcassets */; };
-		3D6D9D1D18EE641B001FBC58 /* WWBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1718EE641B001FBC58 /* WWBaseTableViewController.m */; };
-		3D6D9D1E18EE641B001FBC58 /* WWBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1918EE641B001FBC58 /* WWBaseViewController.m */; };
-		3D6D9D1F18EE641B001FBC58 /* WWBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D9D1B18EE641B001FBC58 /* WWBaseCollectionViewController.m */; };
+		3D6F07FA1905009E00AE7880 /* OEBaseModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07E01905009E00AE7880 /* OEBaseModelObject.m */; };
+		3D6F07FB1905009E00AE7880 /* OEMonitorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07E21905009E00AE7880 /* OEMonitorInfo.m */; };
+		3D6F07FC1905009E00AE7880 /* OEMonitorService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07E51905009E00AE7880 /* OEMonitorService.m */; };
+		3D6F07FD1905009E00AE7880 /* WWBaseNetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07E71905009E00AE7880 /* WWBaseNetService.m */; };
+		3D6F07FE1905009E00AE7880 /* CALayer+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07EA1905009E00AE7880 /* CALayer+Animation.m */; };
+		3D6F07FF1905009E00AE7880 /* NSFileManager+WWFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07EC1905009E00AE7880 /* NSFileManager+WWFoundation.m */; };
+		3D6F08001905009E00AE7880 /* UIView+WWFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07EE1905009E00AE7880 /* UIView+WWFoundation.m */; };
+		3D6F08011905009E00AE7880 /* WWBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07F11905009E00AE7880 /* WWBaseCollectionViewController.m */; };
+		3D6F08021905009E00AE7880 /* WWBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07F31905009E00AE7880 /* WWBaseTableViewController.m */; };
+		3D6F08031905009E00AE7880 /* WWBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07F51905009E00AE7880 /* WWBaseViewController.m */; };
+		3D6F08041905009E00AE7880 /* WWGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F07F81905009E00AE7880 /* WWGridView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D0678A318F2D40200C10D65 /* NSFileManager+WWFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+WWFoundation.h"; sourceTree = "<group>"; };
-		3D0678A418F2D40200C10D65 /* NSFileManager+WWFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+WWFoundation.m"; sourceTree = "<group>"; };
-		3D0678A618F2D5FB00C10D65 /* WWFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWFoundation.h; sourceTree = "<group>"; };
-		3D0678A718F2D6EC00C10D65 /* UIView+WWFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WWFoundation.h"; sourceTree = "<group>"; };
-		3D0678A818F2D6EC00C10D65 /* UIView+WWFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WWFoundation.m"; sourceTree = "<group>"; };
-		3D0678AA18F2D80D00C10D65 /* WWGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWGridView.h; sourceTree = "<group>"; };
-		3D0678AB18F2D80D00C10D65 /* WWGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWGridView.m; sourceTree = "<group>"; };
 		3D6D9CCD18EE5A6F001FBC58 /* WWFoundationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWFoundationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6D9CD018EE5A6F001FBC58 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D6D9CD218EE5A6F001FBC58 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -51,12 +49,30 @@
 		3D6D9CFA18EE5A6F001FBC58 /* WWFoundationDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WWFoundationDemoTests-Info.plist"; sourceTree = "<group>"; };
 		3D6D9CFC18EE5A6F001FBC58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D6D9CFE18EE5A6F001FBC58 /* WWFoundationDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWFoundationDemoTests.m; sourceTree = "<group>"; };
-		3D6D9D1618EE641B001FBC58 /* WWBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseTableViewController.h; sourceTree = "<group>"; };
-		3D6D9D1718EE641B001FBC58 /* WWBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseTableViewController.m; sourceTree = "<group>"; };
-		3D6D9D1818EE641B001FBC58 /* WWBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseViewController.h; sourceTree = "<group>"; };
-		3D6D9D1918EE641B001FBC58 /* WWBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseViewController.m; sourceTree = "<group>"; };
-		3D6D9D1A18EE641B001FBC58 /* WWBaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseCollectionViewController.h; sourceTree = "<group>"; };
-		3D6D9D1B18EE641B001FBC58 /* WWBaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseCollectionViewController.m; sourceTree = "<group>"; };
+		3D6F07DD1905009E00AE7880 /* WWConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWConfiguration.h; sourceTree = "<group>"; };
+		3D6F07DF1905009E00AE7880 /* OEBaseModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEBaseModelObject.h; sourceTree = "<group>"; };
+		3D6F07E01905009E00AE7880 /* OEBaseModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEBaseModelObject.m; sourceTree = "<group>"; };
+		3D6F07E11905009E00AE7880 /* OEMonitorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEMonitorInfo.h; sourceTree = "<group>"; };
+		3D6F07E21905009E00AE7880 /* OEMonitorInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEMonitorInfo.m; sourceTree = "<group>"; };
+		3D6F07E41905009E00AE7880 /* OEMonitorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEMonitorService.h; sourceTree = "<group>"; };
+		3D6F07E51905009E00AE7880 /* OEMonitorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEMonitorService.m; sourceTree = "<group>"; };
+		3D6F07E61905009E00AE7880 /* WWBaseNetService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseNetService.h; sourceTree = "<group>"; };
+		3D6F07E71905009E00AE7880 /* WWBaseNetService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseNetService.m; sourceTree = "<group>"; };
+		3D6F07E91905009E00AE7880 /* CALayer+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Animation.h"; sourceTree = "<group>"; };
+		3D6F07EA1905009E00AE7880 /* CALayer+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Animation.m"; sourceTree = "<group>"; };
+		3D6F07EB1905009E00AE7880 /* NSFileManager+WWFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+WWFoundation.h"; sourceTree = "<group>"; };
+		3D6F07EC1905009E00AE7880 /* NSFileManager+WWFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+WWFoundation.m"; sourceTree = "<group>"; };
+		3D6F07ED1905009E00AE7880 /* UIView+WWFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WWFoundation.h"; sourceTree = "<group>"; };
+		3D6F07EE1905009E00AE7880 /* UIView+WWFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WWFoundation.m"; sourceTree = "<group>"; };
+		3D6F07F01905009E00AE7880 /* WWBaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseCollectionViewController.h; sourceTree = "<group>"; };
+		3D6F07F11905009E00AE7880 /* WWBaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseCollectionViewController.m; sourceTree = "<group>"; };
+		3D6F07F21905009E00AE7880 /* WWBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseTableViewController.h; sourceTree = "<group>"; };
+		3D6F07F31905009E00AE7880 /* WWBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseTableViewController.m; sourceTree = "<group>"; };
+		3D6F07F41905009E00AE7880 /* WWBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseViewController.h; sourceTree = "<group>"; };
+		3D6F07F51905009E00AE7880 /* WWBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseViewController.m; sourceTree = "<group>"; };
+		3D6F07F71905009E00AE7880 /* WWGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWGridView.h; sourceTree = "<group>"; };
+		3D6F07F81905009E00AE7880 /* WWGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWGridView.m; sourceTree = "<group>"; };
+		3D6F07F91905009E00AE7880 /* WWFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWFoundation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,17 +89,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D0678A218F2D3D700C10D65 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				3D0678A318F2D40200C10D65 /* NSFileManager+WWFoundation.h */,
-				3D0678A418F2D40200C10D65 /* NSFileManager+WWFoundation.m */,
-				3D0678A718F2D6EC00C10D65 /* UIView+WWFoundation.h */,
-				3D0678A818F2D6EC00C10D65 /* UIView+WWFoundation.m */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		3D6D9CC418EE5A6F001FBC58 = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +120,7 @@
 		3D6D9CD618EE5A6F001FBC58 /* WWFoundationDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3D6D9D1418EE641B001FBC58 /* WWFoundation */,
+				3D6F07DB1905009E00AE7880 /* WWFoundation */,
 				3D6D9CDF18EE5A6F001FBC58 /* WWAppDelegate.h */,
 				3D6D9CE018EE5A6F001FBC58 /* WWAppDelegate.m */,
 				3D6D9CE218EE5A6F001FBC58 /* Main_iPhone.storyboard */,
@@ -157,36 +162,82 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3D6D9D1418EE641B001FBC58 /* WWFoundation */ = {
+		3D6F07DB1905009E00AE7880 /* WWFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				3D0678A218F2D3D700C10D65 /* Utils */,
-				3D6D9D1518EE641B001FBC58 /* ViewControllers */,
-				3D6D9D1C18EE641B001FBC58 /* Views */,
-				3D0678A618F2D5FB00C10D65 /* WWFoundation.h */,
+				3D6F07DC1905009E00AE7880 /* Core */,
+				3D6F07DE1905009E00AE7880 /* Models */,
+				3D6F07E31905009E00AE7880 /* Services */,
+				3D6F07E81905009E00AE7880 /* Utils */,
+				3D6F07EF1905009E00AE7880 /* ViewControllers */,
+				3D6F07F61905009E00AE7880 /* Views */,
+				3D6F07F91905009E00AE7880 /* WWFoundation.h */,
 			);
 			name = WWFoundation;
 			path = ../../WWFoundation;
 			sourceTree = "<group>";
 		};
-		3D6D9D1518EE641B001FBC58 /* ViewControllers */ = {
+		3D6F07DC1905009E00AE7880 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3D6D9D1618EE641B001FBC58 /* WWBaseTableViewController.h */,
-				3D6D9D1718EE641B001FBC58 /* WWBaseTableViewController.m */,
-				3D6D9D1818EE641B001FBC58 /* WWBaseViewController.h */,
-				3D6D9D1918EE641B001FBC58 /* WWBaseViewController.m */,
-				3D6D9D1A18EE641B001FBC58 /* WWBaseCollectionViewController.h */,
-				3D6D9D1B18EE641B001FBC58 /* WWBaseCollectionViewController.m */,
+				3D6F07DD1905009E00AE7880 /* WWConfiguration.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3D6F07DE1905009E00AE7880 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D6F07DF1905009E00AE7880 /* OEBaseModelObject.h */,
+				3D6F07E01905009E00AE7880 /* OEBaseModelObject.m */,
+				3D6F07E11905009E00AE7880 /* OEMonitorInfo.h */,
+				3D6F07E21905009E00AE7880 /* OEMonitorInfo.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3D6F07E31905009E00AE7880 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3D6F07E41905009E00AE7880 /* OEMonitorService.h */,
+				3D6F07E51905009E00AE7880 /* OEMonitorService.m */,
+				3D6F07E61905009E00AE7880 /* WWBaseNetService.h */,
+				3D6F07E71905009E00AE7880 /* WWBaseNetService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3D6F07E81905009E00AE7880 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3D6F07E91905009E00AE7880 /* CALayer+Animation.h */,
+				3D6F07EA1905009E00AE7880 /* CALayer+Animation.m */,
+				3D6F07EB1905009E00AE7880 /* NSFileManager+WWFoundation.h */,
+				3D6F07EC1905009E00AE7880 /* NSFileManager+WWFoundation.m */,
+				3D6F07ED1905009E00AE7880 /* UIView+WWFoundation.h */,
+				3D6F07EE1905009E00AE7880 /* UIView+WWFoundation.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3D6F07EF1905009E00AE7880 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3D6F07F01905009E00AE7880 /* WWBaseCollectionViewController.h */,
+				3D6F07F11905009E00AE7880 /* WWBaseCollectionViewController.m */,
+				3D6F07F21905009E00AE7880 /* WWBaseTableViewController.h */,
+				3D6F07F31905009E00AE7880 /* WWBaseTableViewController.m */,
+				3D6F07F41905009E00AE7880 /* WWBaseViewController.h */,
+				3D6F07F51905009E00AE7880 /* WWBaseViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		3D6D9D1C18EE641B001FBC58 /* Views */ = {
+		3D6F07F61905009E00AE7880 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3D0678AA18F2D80D00C10D65 /* WWGridView.h */,
-				3D0678AB18F2D80D00C10D65 /* WWGridView.m */,
+				3D6F07F71905009E00AE7880 /* WWGridView.h */,
+				3D6F07F81905009E00AE7880 /* WWGridView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,15 +309,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D6F07FC1905009E00AE7880 /* OEMonitorService.m in Sources */,
+				3D6F08001905009E00AE7880 /* UIView+WWFoundation.m in Sources */,
+				3D6F08021905009E00AE7880 /* WWBaseTableViewController.m in Sources */,
+				3D6F08011905009E00AE7880 /* WWBaseCollectionViewController.m in Sources */,
 				3D6D9CE118EE5A6F001FBC58 /* WWAppDelegate.m in Sources */,
-				3D0678A918F2D6EC00C10D65 /* UIView+WWFoundation.m in Sources */,
-				3D0678AC18F2D80D00C10D65 /* WWGridView.m in Sources */,
+				3D6F07FE1905009E00AE7880 /* CALayer+Animation.m in Sources */,
+				3D6F07FD1905009E00AE7880 /* WWBaseNetService.m in Sources */,
+				3D6F08031905009E00AE7880 /* WWBaseViewController.m in Sources */,
+				3D6F07FA1905009E00AE7880 /* OEBaseModelObject.m in Sources */,
 				3D6D9CDD18EE5A6F001FBC58 /* main.m in Sources */,
-				3D6D9D1E18EE641B001FBC58 /* WWBaseViewController.m in Sources */,
-				3D6D9D1D18EE641B001FBC58 /* WWBaseTableViewController.m in Sources */,
-				3D6D9D1F18EE641B001FBC58 /* WWBaseCollectionViewController.m in Sources */,
+				3D6F07FF1905009E00AE7880 /* NSFileManager+WWFoundation.m in Sources */,
+				3D6F07FB1905009E00AE7880 /* OEMonitorInfo.m in Sources */,
+				3D6F08041905009E00AE7880 /* WWGridView.m in Sources */,
 				3D6D9CEA18EE5A6F001FBC58 /* WWViewController.m in Sources */,
-				3D0678A518F2D40200C10D65 /* NSFileManager+WWFoundation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

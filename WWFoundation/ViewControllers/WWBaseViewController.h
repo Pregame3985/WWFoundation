@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+WWFoundation.h"
 
 @interface WWBaseViewController : UIViewController
+
+@property (nonatomic, assign) BOOL observeKeyboard;
+
+@property (nonatomic, weak) UITextField *activeTextField;
+@property (nonatomic, weak) UITextView *activeTextView;
+@property (nonatomic, weak) UIScrollView *activeScrollView;
 
 - (IBAction)back:(UIButton *)sender;
 

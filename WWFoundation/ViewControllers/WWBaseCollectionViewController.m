@@ -14,6 +14,16 @@
 
 @implementation WWBaseCollectionViewController
 
+- (NSMutableArray *)dataArray
+{
+    if (!_dataArray)
+    {
+        _dataArray = [@[] mutableCopy];
+    }
+    
+    return _dataArray;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +37,23 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.activeScrollView = self.collectionView;
+}
+
+- (void)reloadView
+{
+    [self reloadView:NO];
+}
+
+- (void)reloadView:(BOOL)cleanUp
+{
+    if (cleanUp)
+    {
+        [self.dataArray removeAllObjects];
+    }
+    
+    [self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

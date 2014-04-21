@@ -14,4 +14,8 @@
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
+- (void)reloadView;
+
+- (void)reloadView:(BOOL)cleanUp;
+
 @end
