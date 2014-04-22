@@ -11,7 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
 #import "OEMonitorService.h"
-#import "OEConfiguration.h"
+#import "WWConfiguration.h"
 #import "ASIDownloadCache.h"
 #import "JSONKit.h"
 
