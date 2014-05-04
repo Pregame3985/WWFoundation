@@ -1,15 +1,15 @@
 //
 //  WWBaseService.h
-//  Echo
+//  WWFoundation
 //
 //  Created by William Wu on 4/17/14.
-//  Copyright (c) 2014 The eve of the Shanghai information technology co., LTD. All rights reserved.
+//  Copyright (c) 2014 WW. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "WWBaseService.h"
 #import "ASIHTTPRequest.h"
 
-extern NSString *const kEchoErrorDomain;
+extern NSString *const kNetworkErrorDomain;
 
 typedef NS_ENUM(NSUInteger, RESTfulMethod)
 {
@@ -21,7 +21,15 @@ typedef NS_ENUM(NSUInteger, RESTfulMethod)
 
 typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
 
-@interface WWBaseNetService : NSObject
+@interface WWParams : NSObject
+
+- (void)addParam:(NSString *)key value:(NSObject *)value;
+
+- (NSDictionary *)params;
+
+@end
+
+@interface WWBaseNetService : WWBaseService
 
 @property (nonatomic, assign) NSTimeInterval timeout;
 @property (nonatomic, strong) MultiActionBlock actionBlock;

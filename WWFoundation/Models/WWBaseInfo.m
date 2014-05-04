@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Oneve. All rights reserved.
 //
 
-#import "OEBaseModelObject.h"
+#import "WWBaseInfo.h"
 #import <objc/runtime.h>
 #import "NSManagedObject+InnerBand.h"
 
-@implementation OEBaseModelObject
+@implementation WWBaseInfo
 
 - (id) toCoreDataEntity:(Class)entityType inStore:(IBCoreDataStore *)dataStore
 {
@@ -119,24 +119,29 @@
 {
     Class class = [self class];
     
-    uint count;
-    
-    objc_property_t *properties = class_copyPropertyList(class, &count);
-    
-    for (int i = 0; i < count; i++)
+    while (class != [NSObject class] && class != nil)
     {
-        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+        uint count = 0;
         
-        //skip nil property
-        if (![dictionary valueForKey:key])
+        objc_property_t *properties = class_copyPropertyList(class, &count);
+        
+        for (int i = 0; i < count; i++)
         {
-            continue;
+            NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+            
+            //skip nil property
+            if (![dictionary valueForKey:key])
+            {
+                continue;
+            }
+            
+            [self setValue:[dictionary valueForKey:key] forKey:key];
         }
         
-        [self setValue:[dictionary valueForKey:key] forKey:key];
+        free(properties);
+        
+        class = class_getSuperclass(class);
     }
-    
-    free(properties);
     
     return self;
 }

@@ -17,8 +17,9 @@
 @property (nonatomic, weak) UITextView *activeTextView;
 @property (nonatomic, weak) UIScrollView *activeScrollView;
 
-- (IBAction)back:(UIButton *)sender;
+- (void)applyStyle;
 
+- (IBAction)back:(UIButton *)sender;
 - (IBAction)cancel:(UIButton *)sender;
 
 @end

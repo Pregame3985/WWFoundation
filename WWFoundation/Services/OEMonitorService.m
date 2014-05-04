@@ -1,9 +1,9 @@
 //
 //  OEMonitorService.m
-//  RocheRubik
+//  WWFoundation
 //
 //  Created by William Wu on 2/1/14.
-//  Copyright (c) 2014 Oneve. All rights reserved.
+//  Copyright (c) 2014 WW. All rights reserved.
 //
 
 #import "OEMonitorService.h"

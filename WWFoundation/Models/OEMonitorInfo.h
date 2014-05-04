@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Oneve. All rights reserved.
 //
 
-#import "OEBaseModelObject.h"
+#import "WWBaseInfo.h"
 
-@interface OEMonitorInfo : OEBaseModelObject
+@interface OEMonitorInfo : WWBaseInfo
 
 @property (nonatomic, strong) NSDate *last_update_time;
 @property (nonatomic, strong) NSString *url;

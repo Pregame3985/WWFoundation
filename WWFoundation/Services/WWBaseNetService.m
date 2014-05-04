@@ -1,9 +1,9 @@
 //
 //  WWBaseService.m
-//  Echo
+//  WWFoundation
 //
 //  Created by William Wu on 4/17/14.
-//  Copyright (c) 2014 The eve of the Shanghai information technology co., LTD. All rights reserved.
+//  Copyright (c) 2014 WW. All rights reserved.
 //
 
 #import "WWBaseNetService.h"
@@ -15,7 +15,37 @@
 #import "ASIDownloadCache.h"
 #import "JSONKit.h"
 
-NSString *const kEchoErrorDomain = @"com.oneve.echo.error";
+NSString *const kNetworkErrorDomain = @"com.oneve.network.error";
+
+@interface WWParams ()
+
+@property (nonatomic, strong) NSMutableDictionary *wwParams;
+
+@end
+
+@implementation WWParams
+
+- (NSMutableDictionary *)_wwParams
+{
+    if (!_wwParams)
+    {
+        _wwParams = [[NSMutableDictionary alloc] init];
+    }
+    
+    return _wwParams;
+}
+
+- (void)addParam:(NSString *)key value:(NSObject *)value
+{
+    [self.wwParams setObject:value forKey:key];
+}
+
+- (NSMutableDictionary *)params
+{
+    return [self wwParams];
+}
+
+@end
 
 @interface WWBaseNetService () <ASIHTTPRequestDelegate>
 
@@ -214,7 +244,7 @@ NSString *const kEchoErrorDomain = @"com.oneve.echo.error";
     else
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"网络无法连接"};
-        NSError *error = [NSError errorWithDomain:kEchoErrorDomain code:500 userInfo:userInfo];
+        NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
         
         if (complete)
         {
@@ -241,7 +271,7 @@ NSString *const kEchoErrorDomain = @"com.oneve.echo.error";
     else
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"网络无法连接"};
-        NSError *error = [NSError errorWithDomain:kEchoErrorDomain code:500 userInfo:userInfo];
+        NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
         
         if (complete)
         {
@@ -265,7 +295,7 @@ NSString *const kEchoErrorDomain = @"com.oneve.echo.error";
     else
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"网络无法连接"};
-        NSError *error = [NSError errorWithDomain:kEchoErrorDomain code:500 userInfo:userInfo];
+        NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
         
         if (complete)
         {
@@ -288,7 +318,7 @@ NSString *const kEchoErrorDomain = @"com.oneve.echo.error";
     if (!responseObject)
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"网络连接出错"};
-        NSError *error = [NSError errorWithDomain:kEchoErrorDomain code:500 userInfo:userInfo];
+        NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
         
         if (actionBlock)
         {
@@ -315,7 +345,7 @@ NSString *const kEchoErrorDomain = @"com.oneve.echo.error";
         else
         {
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey : responseObject[@"msg"]};
-            NSError *error = [NSError errorWithDomain:kEchoErrorDomain code:500 userInfo:userInfo];
+            NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
             if (actionBlock)
             {
                 actionBlock(nil, error);
