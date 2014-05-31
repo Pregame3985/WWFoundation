@@ -11,5 +11,6 @@
 @interface UIImage (WWFoundation)
 
 - (UIImage *)fixOrientation;
+- (UIImage *)addImage:(UIImage *)image size:(CGSize)size;
 
 @end

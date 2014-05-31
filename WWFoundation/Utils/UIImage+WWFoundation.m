@@ -87,4 +87,19 @@
     return img;
 }
 
+- (UIImage *)addImage:(UIImage *)image size:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+ 
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    
+    [self drawInRect:rect];
+    [image drawInRect:rect];
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return resultingImage;
+}
 @end
