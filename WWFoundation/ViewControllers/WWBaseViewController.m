@@ -97,13 +97,6 @@
     [super viewWillDisappear:animated];
 }
 
-- (void) viewDidDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [super viewDidDisappear:animated];
-}
-
 - (UIView *)editInputAccessoryView
 {
     if (!_editInputAccessoryView)
@@ -132,7 +125,13 @@
 
 - (void)unregisterForKeyboardNotifications
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidShowNotification
+                                                  object:nil];
 }
 
 - (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
