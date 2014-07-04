@@ -62,6 +62,16 @@
     [self.tableView reloadData];
 }
 
+- (void)refreshView
+{
+    self.pageNum = @1;
+}
+
+- (void)loadMoreView
+{
+    self.pageNum = @(self.pageNum.integerValue + 1);
+}
+
 /*
 #pragma mark - Navigation
 

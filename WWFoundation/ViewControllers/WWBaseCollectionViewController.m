@@ -56,6 +56,16 @@
     [self.collectionView reloadData];
 }
 
+- (void)refreshView
+{
+    self.pageNum = @1;
+}
+
+- (void)loadMoreView
+{
+    self.pageNum = @(self.pageNum.integerValue + 1);
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
