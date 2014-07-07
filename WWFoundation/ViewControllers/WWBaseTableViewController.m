@@ -47,6 +47,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareData
+{
+    [self refreshView];
+}
+
 - (void)reloadView
 {
     [self reloadView:NO];

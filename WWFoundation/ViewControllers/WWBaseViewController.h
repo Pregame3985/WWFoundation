@@ -18,6 +18,7 @@
 @property (nonatomic, weak) UIScrollView *activeScrollView;
 
 - (void)applyStyle;
+- (void)prepareData;
 
 - (IBAction)back:(UIButton *)sender;
 - (IBAction)cancel:(UIButton *)sender;

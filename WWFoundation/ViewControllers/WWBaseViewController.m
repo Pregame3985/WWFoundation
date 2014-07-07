@@ -40,6 +40,8 @@
     // Do any additional setup after loading the view.
     
     [self applyStyle];
+    
+    [self prepareData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,6 +62,9 @@
  */
 
 - (void)applyStyle
+{}
+
+- (void)prepareData
 {}
 
 - (IBAction)back:(UIButton *)sender
