@@ -165,7 +165,7 @@ NSString *const kNetworkErrorDomain = @"com.oneve.network.error";
     [request setSecondsToCache:30];
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy | ASIAskServerIfModifiedWhenStaleCachePolicy];
     [request setDelegate:self];
-    [request setTimeOutSeconds:10.0f];
+    [request setTimeOutSeconds:45.0f];
     
     NSMutableDictionary *mutableData = [data mutableCopy];
     

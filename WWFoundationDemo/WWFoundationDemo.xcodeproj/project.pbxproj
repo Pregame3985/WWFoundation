@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D4499B7196A9A7E0099905D /* WWBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4499B6196A9A7E0099905D /* WWBaseView.m */; };
 		3D6D9CD118EE5A6F001FBC58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CD018EE5A6F001FBC58 /* Foundation.framework */; };
 		3D6D9CD318EE5A6F001FBC58 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CD218EE5A6F001FBC58 /* CoreGraphics.framework */; };
 		3D6D9CD518EE5A6F001FBC58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6D9CD418EE5A6F001FBC58 /* UIKit.framework */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D4499B5196A9A7E0099905D /* WWBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWBaseView.h; sourceTree = "<group>"; };
+		3D4499B6196A9A7E0099905D /* WWBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWBaseView.m; sourceTree = "<group>"; };
 		3D6D9CCD18EE5A6F001FBC58 /* WWFoundationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWFoundationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6D9CD018EE5A6F001FBC58 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D6D9CD218EE5A6F001FBC58 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -238,6 +241,8 @@
 			children = (
 				3D6F07F71905009E00AE7880 /* WWGridView.h */,
 				3D6F07F81905009E00AE7880 /* WWGridView.m */,
+				3D4499B5196A9A7E0099905D /* WWBaseView.h */,
+				3D4499B6196A9A7E0099905D /* WWBaseView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 				3D6F07FD1905009E00AE7880 /* WWBaseNetService.m in Sources */,
 				3D6F08031905009E00AE7880 /* WWBaseViewController.m in Sources */,
 				3D6F07FA1905009E00AE7880 /* OEBaseModelObject.m in Sources */,
+				3D4499B7196A9A7E0099905D /* WWBaseView.m in Sources */,
 				3D6D9CDD18EE5A6F001FBC58 /* main.m in Sources */,
 				3D6F07FF1905009E00AE7880 /* NSFileManager+WWFoundation.m in Sources */,
 				3D6F07FB1905009E00AE7880 /* OEMonitorInfo.m in Sources */,
