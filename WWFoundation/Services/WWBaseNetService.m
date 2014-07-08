@@ -15,7 +15,7 @@
 #import "ASIDownloadCache.h"
 #import "JSONKit.h"
 
-NSString *const kNetworkErrorDomain = @"com.oneve.network.error";
+NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 
 @interface WWParams ()
 
@@ -83,7 +83,7 @@ NSString *const kNetworkErrorDomain = @"com.oneve.network.error";
     if (self)
     {
         self.version     = 1;
-        self.timeout     = 10;
+        self.timeout     = 45.0f;
         self.monitorService = [[OEMonitorService alloc] init];
         self.actionBlocks = [@{} mutableCopy];
         self.apiMonitors = [@{} mutableCopy];
@@ -112,7 +112,8 @@ NSString *const kNetworkErrorDomain = @"com.oneve.network.error";
 
 + (NSURL *) getAction:(NSString *)actionName
 {
-    NSString *action = [DOMAIN_HOST stringByAppendingString:actionName];
+    NSString *apiURL = [DOMAIN_HOST stringByAppendingFormat:@"/v%d", self.version];
+    NSString *action = [apiURL stringByAppendingString:actionName];
     
     NSURL *url = [NSURL URLWithString:action];
     
@@ -165,7 +166,7 @@ NSString *const kNetworkErrorDomain = @"com.oneve.network.error";
     [request setSecondsToCache:30];
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy | ASIAskServerIfModifiedWhenStaleCachePolicy];
     [request setDelegate:self];
-    [request setTimeOutSeconds:45.0f];
+    [request setTimeOutSeconds:self.timeout];
     
     NSMutableDictionary *mutableData = [data mutableCopy];
     
@@ -183,7 +184,7 @@ NSString *const kNetworkErrorDomain = @"com.oneve.network.error";
     [request addRequestHeader:@"Content-type" value:@"application/x-www-form-urlencoded"];
     [request setRequestMethod:[self methodString:RESTFUL_METHOD_POST]];
     [request setDelegate:self];
-    [request setTimeOutSeconds:45.0f];
+    [request setTimeOutSeconds:self.timeout];
     
     NSString *postString;
     
