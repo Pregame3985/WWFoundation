@@ -11,6 +11,7 @@
 @interface WWBaseViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, readonly) UIToolbar *editInputAccessoryView;
+@property (nonatomic, weak) id weakSelf;
 
 @end
 
@@ -38,6 +39,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.weakSelf = self;
     
     [self applyStyle];
     

@@ -16,6 +16,7 @@
 @property (nonatomic, weak) UITextField *activeTextField;
 @property (nonatomic, weak) UITextView *activeTextView;
 @property (nonatomic, weak) UIScrollView *activeScrollView;
+@property (nonatomic, readonly) id weakSelf;
 
 - (void)applyStyle;
 - (void)prepareData;
