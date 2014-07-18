@@ -7,8 +7,11 @@
 //
 
 #import "WWBaseTableViewController.h"
+#import "ODRefreshControl.h"
 
 @interface WWBaseTableViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) ODRefreshControl *refreshControl;
 
 @end
 
@@ -87,6 +90,29 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)setAllowingPullRefreshing:(BOOL)allowingPullRefreshing
+{
+    [self addPullRefreshScrolling];
+}
+
+- (void)addPullRefreshScrolling
+{
+    self.refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    [self.refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)dropViewDidBeginRefreshing:(id)sender
+{
+    [self refreshView];
+    
+    __weak WWBaseTableViewController *weakSelf = self;
+    double delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.refreshControl endRefreshing];
+    });
+}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

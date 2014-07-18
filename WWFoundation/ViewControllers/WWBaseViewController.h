@@ -11,12 +11,14 @@
 
 @interface WWBaseViewController : UIViewController
 
-@property (nonatomic, assign) BOOL observeKeyboard;
+@property (nonatomic, weak) IBOutlet UIImageView *backgroundView;
 
 @property (nonatomic, weak) UITextField *activeTextField;
 @property (nonatomic, weak) UITextView *activeTextView;
 @property (nonatomic, weak) UIScrollView *activeScrollView;
+
 @property (nonatomic, readonly) id weakSelf;
+@property (nonatomic, assign) BOOL observeKeyboard;
 
 - (void)applyStyle;
 - (void)prepareData;

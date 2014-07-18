@@ -27,4 +27,6 @@ typedef NS_ENUM(NSInteger, TableViewScrollingDirection)
 - (void)refreshView;
 - (void)loadMoreView;
 
+- (void)setAllowingPullRefreshing:(BOOL)allowingPullRefreshing;
+
 @end
