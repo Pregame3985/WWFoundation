@@ -37,4 +37,8 @@
 }
 */
 
+- (void)bindData:(id<RIItemData>)itemData
+{}
+
+
 @end

@@ -11,7 +11,6 @@
 @interface WWBaseViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, readonly) UIToolbar *editInputAccessoryView;
-@property (nonatomic, weak) id weakSelf;
 
 @end
 
@@ -39,8 +38,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.weakSelf = self;
     
     [self applyStyle];
     
@@ -194,6 +191,10 @@
     {
         [self.activeTextView resignFirstResponder];
     }
+    else if (self.activeSearchBar)
+    {
+        [self.activeSearchBar resignFirstResponder];
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -216,6 +217,15 @@
     {
         self.activeTextView.inputAccessoryView = self.editInputAccessoryView;
     }
+}
+
+#pragma mark - UISearchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    self.activeSearchBar = searchBar;
+    
+    
+    
 }
 
 @end

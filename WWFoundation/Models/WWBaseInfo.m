@@ -12,6 +12,11 @@
 
 @implementation WWBaseInfo
 
+@synthesize id = _id;
+@synthesize created_time = _created_time;
+@synthesize updated_time = _updated_time;
+@synthesize published_time = _published_time;
+
 - (id) toCoreDataEntity:(Class)entityType inStore:(IBCoreDataStore *)dataStore
 {
 	return [self updateCoreDataEntity:[entityType createInStore:dataStore]];

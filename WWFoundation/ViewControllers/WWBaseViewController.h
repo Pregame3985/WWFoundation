@@ -15,9 +15,9 @@
 
 @property (nonatomic, weak) UITextField *activeTextField;
 @property (nonatomic, weak) UITextView *activeTextView;
+@property (nonatomic, weak) UISearchBar *activeSearchBar;
 @property (nonatomic, weak) UIScrollView *activeScrollView;
 
-@property (nonatomic, readonly) id weakSelf;
 @property (nonatomic, assign) BOOL observeKeyboard;
 
 - (void)applyStyle;

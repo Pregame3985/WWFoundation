@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "IBCoreDataStore.h"
 
-@interface WWBaseInfo : NSObject
+@protocol RIItemData <NSObject>
 
 @property (nonatomic, strong) NSNumber *id;
 @property (nonatomic, strong) NSNumber *created_time;
 @property (nonatomic, strong) NSNumber *updated_time;
 @property (nonatomic, strong) NSNumber *published_time;
+
+@end
+
+@interface WWBaseInfo : NSObject <RIItemData>
 
 @end
 

@@ -13,4 +13,6 @@
 
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 
+- (void)bindData:(id<RIItemData>)itemData;
+
 @end
