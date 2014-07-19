@@ -14,6 +14,10 @@
 
 - (void)cleanupGestures;
 
+- (void)fillLayer:(CAShapeLayer *)shapeLayer
+        withColor:(UIColor *)color
+           atPath:(UIBezierPath *)path;
+
 @end
 
 @interface UIView (Geometry)

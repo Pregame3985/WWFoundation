@@ -8,6 +8,14 @@
 
 #import "WWBaseView.h"
 
+@interface WWBaseView ()
+
+@property (nonatomic, weak) id<WWBaseViewDelegate> delegate;
+@property (nonatomic, strong) id<RIItemData> itemData;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+
+@end
+
 @implementation WWBaseView
 
 - (void)awakeFromNib
@@ -16,8 +24,14 @@
     
     [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
     [self addSubview:self.contentView];
+    
+    self.delegate = self;
+    
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                              action:@selector(handleTapGesture:)];
+    
+    [self addGestureRecognizer:self.tapGesture];
 }
-
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -29,16 +43,42 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
+
+- (void)removeFromSuperview
 {
-    // Drawing code
+    [self removeGestureRecognizer:self.tapGesture];
+    
+    self.tapGesture = nil;
+    self.delegate = nil;
+    
+    [super removeFromSuperview];
 }
-*/
 
 - (void)bindData:(id<RIItemData>)itemData
+{
+    self.itemData = itemData;
+    
+    [self.delegate fillData];
+}
+
+- (void)fillData
 {}
 
+- (void)viewDidTapped
+{}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)tapGesture
+{
+    DLog(@"%@", @"Content View Did Tapped");
+    
+    [self.delegate viewDidTapped];
+}
 
 @end

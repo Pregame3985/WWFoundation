@@ -33,6 +33,15 @@
     }
 }
 
+- (void)fillLayer:(CAShapeLayer *)shapeLayer
+        withColor:(UIColor *)color
+           atPath:(UIBezierPath *)path
+{
+    [shapeLayer setPath:[path CGPath]];
+    shapeLayer.fillColor = [color CGColor];
+    
+}
+
 @end
 
 @implementation UIView (Geometry)
