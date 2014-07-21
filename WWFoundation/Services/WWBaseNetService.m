@@ -117,13 +117,13 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     
     NSURL *url = [NSURL URLWithString:action];
     
-//    if (![actionName isEqualToString:kLoginAction] &&
-//        ![actionName isEqualToString:kChangePasswordAction] &&
-//        ![actionName isEqualToString:kSubordinateAction] &&
-//        ![actionName isEqualToString:kSearchConfAction])
-//    {
+    //    if (![actionName isEqualToString:kLoginAction] &&
+    //        ![actionName isEqualToString:kChangePasswordAction] &&
+    //        ![actionName isEqualToString:kSubordinateAction] &&
+    //        ![actionName isEqualToString:kSearchConfAction])
+    //    {
     //        url = [url URLByAppendingPathComponent:[OEAppDelegate sharedAppDelegate].userInfo.token];
-//    }
+    //    }
     
 #ifdef API_ENVIRONMENT_DEVELOPMENT
     DLog(@"Request URL %@", url);
@@ -188,38 +188,38 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     
     NSString *postString;
     
-//    if ([data isKindOfClass:[NSDictionary class]])
-//    {
-//        OEUserInfo *userInfo = [OEAppDelegate sharedAppDelegate].userInfo;
-//        
-//        NSString *hashKey = [NSString stringWithFormat:@"%@+%d", url.absoluteString, userInfo.id.intValue].md5;
-//        
-//        OEMonitorInfo *apiMonitor = [OEAppDelegate sharedAppDelegate].apiMonitors[hashKey];
-//        
-//        NSMutableDictionary *mutableData = [data mutableCopy];
-//        
-//        if (![actionName isEqualToString:kSearchConfAction])
-//        {
-//            if (apiMonitor)
-//            {
-//                mutableData[@"last_update_time"] = @(apiMonitor.last_update_time.timeIntervalSince1970);
-//            }
-//            else
-//            {
-//                mutableData[@"last_update_time"] = @(0);
-//            }
-//        }
-//        
-//        postString = mutableData.JSONString;
-//    }
-//    else if ([data isKindOfClass:[NSArray class]])
-//    {
-//        postString = ((NSArray *)data).JSONString;
-//    }
-//    else
-//    {
-//        assert(@"Params invalid");
-//    }
+    //    if ([data isKindOfClass:[NSDictionary class]])
+    //    {
+    //        OEUserInfo *userInfo = [OEAppDelegate sharedAppDelegate].userInfo;
+    //
+    //        NSString *hashKey = [NSString stringWithFormat:@"%@+%d", url.absoluteString, userInfo.id.intValue].md5;
+    //
+    //        OEMonitorInfo *apiMonitor = [OEAppDelegate sharedAppDelegate].apiMonitors[hashKey];
+    //
+    //        NSMutableDictionary *mutableData = [data mutableCopy];
+    //
+    //        if (![actionName isEqualToString:kSearchConfAction])
+    //        {
+    //            if (apiMonitor)
+    //            {
+    //                mutableData[@"last_update_time"] = @(apiMonitor.last_update_time.timeIntervalSince1970);
+    //            }
+    //            else
+    //            {
+    //                mutableData[@"last_update_time"] = @(0);
+    //            }
+    //        }
+    //
+    //        postString = mutableData.JSONString;
+    //    }
+    //    else if ([data isKindOfClass:[NSArray class]])
+    //    {
+    //        postString = ((NSArray *)data).JSONString;
+    //    }
+    //    else
+    //    {
+    //        assert(@"Params invalid");
+    //    }
     
 #ifdef API_ENVIRONMENT_DEVELOPMENT
     DLog(@"Post data %@", postString);
@@ -227,6 +227,28 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     
     [request appendPostData:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
+    return request;
+}
+
+- (ASIHTTPRequest *)createDeleteRequest:(NSString *)actionName data:(NSDictionary *)data
+{
+    NSURL *url = [WWBaseNetService getAction:actionName];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request addRequestHeader:@"Content-Type" value:@"application/json"];
+    [request setRequestMethod:[self methodString:RESTFUL_METHOD_DELETE]];
+    
+    [request setDownloadCache:[ASIDownloadCache sharedCache]];
+    [request setCacheStoragePolicy:ASICacheForSessionDurationCacheStoragePolicy];
+    [request setSecondsToCache:30];
+    [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy | ASIAskServerIfModifiedWhenStaleCachePolicy];
+    [request setDelegate:self];
+    [request setTimeOutSeconds:self.timeout];
+    
+    NSMutableDictionary *mutableData = [data mutableCopy];
+    
+    [request appendPostData:[mutableData.JSONString dataUsingEncoding:NSUTF8StringEncoding]];
     return request;
 }
 
@@ -288,6 +310,30 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     if (self.isNetworkAvailable)
     {
         ASIHTTPRequest *request = [self createPostRequest:actionName data:params];
+        
+        [self.actionBlocks setObject:complete forKey:request.url];
+        
+        [request startAsynchronous];
+    }
+    else
+    {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"网络无法连接"};
+        NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
+        
+        if (complete)
+        {
+            complete(nil, error);
+        }
+    }
+}
+
+- (void) deleteActionWithActionName:(NSString *)actionName
+                             params:(id)params
+                           complete:(MultiActionBlock)complete
+{
+    if (self.isNetworkAvailable)
+    {
+        ASIHTTPRequest *request = [self createDeleteRequest:actionName data:params];
         
         [self.actionBlocks setObject:complete forKey:request.url];
         

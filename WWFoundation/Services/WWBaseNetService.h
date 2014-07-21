@@ -55,5 +55,8 @@ typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
                            params:(id)params
                          complete:(MultiActionBlock)complete;
 
+- (void) deleteActionWithActionName:(NSString *)actionName
+                             params:(id)params
+                           complete:(MultiActionBlock)complete;
 
 @end
