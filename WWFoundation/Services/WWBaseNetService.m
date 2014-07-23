@@ -374,7 +374,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     }
     else
     {
-        if ([responseObject[@"code"] integerValue] == 1)
+        if ([responseObject[@"state"] integerValue] == 1)
         {
             NSDictionary *extra = responseObject[@"extra"];
             if (extra)
@@ -391,7 +391,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
         }
         else
         {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : responseObject[@"msg"]};
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : responseObject[@"error"][@"message"]};
             NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
             if (actionBlock)
             {
