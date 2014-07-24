@@ -25,7 +25,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 
 @implementation WWParams
 
-- (NSMutableDictionary *)_wwParams
+- (NSMutableDictionary *)wwParams
 {
     if (!_wwParams)
     {
@@ -35,9 +35,44 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     return _wwParams;
 }
 
+- (void)addAuth
+{
+    NSString *access = [RIDataCenter sharedInstance].loginUserInfo.access;
+    
+    if (access.length > 0)
+    {
+        [self addParam:@"access" value:access];
+    }
+    else
+    {
+        @throw([NSException exceptionWithName:@"Not Auth" reason:@"Not Auth" userInfo:nil]);
+    }
+}
+
 - (void)addParam:(NSString *)key value:(NSObject *)value
 {
-    [self.wwParams setObject:value forKey:key];
+    if (key.length > 0 && value)
+    {
+        if ([value isKindOfClass:[NSNumber class]])
+        {
+            value = [((NSNumber *)value) stringValue];
+        }
+        [self.wwParams setObject:value forKey:key];
+    }
+}
+
+- (void)addParams:(NSString *)key values:(NSArray *)values
+{
+    if (key.length > 0 && values.count > 0)
+    {
+        for (int i = 0; i < values.count; i++)
+        {
+            NSString *paramKey = [NSString stringWithFormat:@"%@[%d]", key, i];
+            NSObject *paramValue = values[i];
+            
+            [self addParam:paramKey value:paramValue];
+        }
+    }
 }
 
 - (NSMutableDictionary *)params
@@ -110,12 +145,19 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     self.apiMonitors[monitorInfo.hash_key] = monitorInfo;
 }
 
-+ (NSURL *) getAction:(NSString *)actionName
+- (NSURL *) getAction:(NSString *)actionName
 {
-    NSString *apiURL = [DOMAIN_HOST stringByAppendingFormat:@"/v%d", self.version];
-    NSString *action = [apiURL stringByAppendingString:actionName];
+    NSString *theActionName = actionName;
+    if (self.version > 1)
+    {
+        theActionName = [DOMAIN_HOST stringByAppendingFormat:@"/v%d%@", self.version, actionName];
+    }
+    else
+    {
+        theActionName = [DOMAIN_HOST stringByAppendingFormat:@"%@", actionName];
+    }
     
-    NSURL *url = [NSURL URLWithString:action];
+    NSURL *url = [NSURL URLWithString:theActionName];
     
     //    if (![actionName isEqualToString:kLoginAction] &&
     //        ![actionName isEqualToString:kChangePasswordAction] &&
@@ -154,7 +196,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 
 - (ASIHTTPRequest *)createGetRequest:(NSString *)actionName data:(NSDictionary *)data
 {
-    NSURL *url = [WWBaseNetService getAction:actionName];
+    NSURL *url = [self getAction:actionName];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
@@ -176,17 +218,21 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 
 - (ASIHTTPRequest *)createPostRequest:(NSString *)actionName data:(id)data
 {
-    NSURL *url = [WWBaseNetService getAction:actionName];
+    NSURL *url = [self getAction:actionName];
     
-    ASIHTTPRequest *request = [ASIFormDataRequest requestWithURL:url];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
     [request addRequestHeader:@"Accept" value:@"application/json"];
     [request addRequestHeader:@"Content-type" value:@"application/x-www-form-urlencoded"];
-    [request setRequestMethod:[self methodString:RESTFUL_METHOD_POST]];
     [request setDelegate:self];
     [request setTimeOutSeconds:self.timeout];
     
-    NSString *postString;
+    for (NSString *key in [((NSMutableDictionary *)data) allKeys])
+    {
+        [request setPostValue:((NSMutableDictionary *)data)[key] forKey:key];
+    }
+    
+//    NSString *postString;
     
     //    if ([data isKindOfClass:[NSDictionary class]])
     //    {
@@ -221,18 +267,18 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     //        assert(@"Params invalid");
     //    }
     
-#ifdef API_ENVIRONMENT_DEVELOPMENT
-    DLog(@"Post data %@", postString);
-#endif
-    
-    [request appendPostData:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+//#ifdef API_ENVIRONMENT_DEVELOPMENT
+//    DLog(@"Post data %@", postString);
+//#endif
+//    
+//    [request appendPostData:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     return request;
 }
 
 - (ASIHTTPRequest *)createDeleteRequest:(NSString *)actionName data:(NSDictionary *)data
 {
-    NSURL *url = [WWBaseNetService getAction:actionName];
+    NSURL *url = [self getAction:actionName];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     

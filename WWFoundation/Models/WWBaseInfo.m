@@ -13,6 +13,7 @@
 @implementation WWBaseInfo
 
 @synthesize id = _id;
+@synthesize uuid = _uuid;
 @synthesize created_time = _created_time;
 @synthesize updated_time = _updated_time;
 @synthesize published_time = _published_time;

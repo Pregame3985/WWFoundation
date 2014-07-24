@@ -17,6 +17,7 @@
 @property (nonatomic, weak) UITextView *activeTextView;
 @property (nonatomic, weak) UISearchBar *activeSearchBar;
 @property (nonatomic, weak) UIScrollView *activeScrollView;
+@property (nonatomic, readonly) UIToolbar *editInputAccessoryView;
 
 @property (nonatomic, assign) BOOL observeKeyboard;
 

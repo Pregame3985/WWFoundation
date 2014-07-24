@@ -10,7 +10,7 @@
 
 @interface WWBaseViewController () <UITextFieldDelegate, UITextViewDelegate>
 
-@property (nonatomic, readonly) UIToolbar *editInputAccessoryView;
+@property (nonatomic, strong) UIToolbar *editInputAccessoryView;
 
 @end
 
@@ -62,17 +62,37 @@
  */
 
 - (void)applyStyle
-{}
+{
+    self.view.backgroundColor = [UIColor appBackgroundColor];
+    
+    NSArray *viewControllers = [self.navigationController viewControllers];
+    
+    if (self != viewControllers[0])
+    {
+        
+        UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_navi_back_48_48"]
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:self
+                                                                             action:@selector(popViewController)];
+        
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+    }
+}
 
 - (void)prepareData
 {}
 
-- (IBAction)back:(UIButton *)sender
+- (void)popViewController
 {
     if (self.navigationController)
     {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (IBAction)back:(UIButton *)sender
+{
+    [self popViewController];
 }
 
 - (IBAction)cancel:(UIButton *)sender
@@ -157,7 +177,10 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    UIEdgeInsets contentInsets = self.activeScrollView.contentInset;
+    contentInsets.bottom = kbSize.height;
+    
+//    UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
     self.activeScrollView.scrollIndicatorInsets = contentInsets;
     self.activeScrollView.contentInset = contentInsets;
     
@@ -176,7 +199,13 @@
 
 - (void) keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = self.activeScrollView.contentInset;
+    contentInsets.bottom -= kbSize.height;
+    
+//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.activeScrollView.contentInset = contentInsets;
     self.activeScrollView.scrollIndicatorInsets = contentInsets;
 }
@@ -224,7 +253,10 @@
 {
     self.activeSearchBar = searchBar;
     
-    
+    if (self.observeKeyboard)
+    {
+        self.activeSearchBar.inputAccessoryView = self.editInputAccessoryView;
+    }
     
 }
 

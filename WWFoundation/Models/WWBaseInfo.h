@@ -12,6 +12,7 @@
 @protocol RIItemData <NSObject>
 
 @property (nonatomic, strong) NSNumber *id;
+@property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSNumber *created_time;
 @property (nonatomic, strong) NSNumber *updated_time;
 @property (nonatomic, strong) NSNumber *published_time;
