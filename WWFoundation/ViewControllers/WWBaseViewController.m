@@ -233,7 +233,10 @@
     
     if (self.observeKeyboard)
     {
-        self.activeTextField.inputAccessoryView = self.editInputAccessoryView;
+        if (!self.activeTextField.inputAccessoryView)
+        {
+            self.activeTextField.inputAccessoryView = self.editInputAccessoryView;
+        }
     }
 }
 

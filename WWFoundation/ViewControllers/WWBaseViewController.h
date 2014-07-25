@@ -23,6 +23,7 @@
 
 - (void)applyStyle;
 - (void)prepareData;
+- (void)resigenKeyBoard;
 
 - (IBAction)back:(UIButton *)sender;
 - (IBAction)cancel:(UIButton *)sender;
