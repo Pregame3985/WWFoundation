@@ -35,6 +35,7 @@ typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
 
 @property (nonatomic, assign) NSTimeInterval timeout;
 @property (nonatomic, strong) MultiActionBlock actionBlock;
+@property (nonatomic, strong) MultiActionBlock notLoginActionBlock;
 @property (nonatomic, strong) NSMutableDictionary *actionBlocks;
 @property (nonatomic, getter = isNetworkAvailable) BOOL networkAvailable;
 

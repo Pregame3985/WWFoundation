@@ -145,7 +145,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     self.apiMonitors[monitorInfo.hash_key] = monitorInfo;
 }
 
-- (NSURL *) getAction:(NSString *)actionName
+- (NSURL *) getAction:(NSString *)actionName params:(NSDictionary *)params
 {
     NSString *theActionName = actionName;
     if (self.version > 1)
@@ -157,21 +157,41 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
         theActionName = [DOMAIN_HOST stringByAppendingFormat:@"%@", actionName];
     }
     
-    NSURL *url = [NSURL URLWithString:theActionName];
+    if (params.count > 0)
+    {
+        NSMutableArray *querys = [@[] mutableCopy];
+        
+        for (NSString *key in [params allKeys])
+        {
+            NSString *value = params[key];
+            
+            if (value.length > 0)
+            {
+                NSString *query = [NSString stringWithFormat:@"%@=%@", key, value];
+                [querys addObject:query];
+            }
+        }
+        
+        NSString *queryString = [querys componentsJoinedByString:@"&"];
+        
+        if (queryString.length > 0)
+        {
+            theActionName = [theActionName stringByAppendingFormat:@"?%@", queryString];
+        }
+    }
     
-    //    if (![actionName isEqualToString:kLoginAction] &&
-    //        ![actionName isEqualToString:kChangePasswordAction] &&
-    //        ![actionName isEqualToString:kSubordinateAction] &&
-    //        ![actionName isEqualToString:kSearchConfAction])
-    //    {
-    //        url = [url URLByAppendingPathComponent:[OEAppDelegate sharedAppDelegate].userInfo.token];
-    //    }
+    NSURL *url = [NSURL URLWithString:theActionName];
     
 #ifdef API_ENVIRONMENT_DEVELOPMENT
     DLog(@"Request URL %@", url);
 #endif
     
     return url;
+}
+
+- (NSURL *) getAction:(NSString *)actionName
+{
+    return [self getAction:actionName params:nil];
 }
 
 - (NSString *) methodString:(RESTfulMethod)method
@@ -196,7 +216,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 
 - (ASIHTTPRequest *)createGetRequest:(NSString *)actionName data:(NSDictionary *)data
 {
-    NSURL *url = [self getAction:actionName];
+    NSURL *url = [self getAction:actionName params:data];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
@@ -209,10 +229,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy | ASIAskServerIfModifiedWhenStaleCachePolicy];
     [request setDelegate:self];
     [request setTimeOutSeconds:self.timeout];
-    
-    NSMutableDictionary *mutableData = [data mutableCopy];
-    
-    [request appendPostData:[mutableData.JSONString dataUsingEncoding:NSUTF8StringEncoding]];
+
     return request;
 }
 
@@ -232,7 +249,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
         [request setPostValue:((NSMutableDictionary *)data)[key] forKey:key];
     }
     
-//    NSString *postString;
+    //    NSString *postString;
     
     //    if ([data isKindOfClass:[NSDictionary class]])
     //    {
@@ -267,11 +284,11 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     //        assert(@"Params invalid");
     //    }
     
-//#ifdef API_ENVIRONMENT_DEVELOPMENT
-//    DLog(@"Post data %@", postString);
-//#endif
-//    
-//    [request appendPostData:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    //#ifdef API_ENVIRONMENT_DEVELOPMENT
+    //    DLog(@"Post data %@", postString);
+    //#endif
+    //
+    //    [request appendPostData:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     return request;
 }
@@ -437,11 +454,21 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
         }
         else
         {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : responseObject[@"error"][@"message"]};
-            NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
-            if (actionBlock)
+            if ([responseObject[@"error"][@"code"] isEqualToString:@"/access_001"])
             {
-                actionBlock(nil, error);
+                if (self.notLoginActionBlock)
+                {
+                    self.notLoginActionBlock(nil, nil);
+                }
+            }
+            else
+            {
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : responseObject[@"error"][@"message"]};
+                NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
+                if (actionBlock)
+                {
+                    actionBlock(nil, error);
+                }
             }
         }
     }
