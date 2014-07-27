@@ -34,3 +34,10 @@
 + (id) fromDictionary:(NSDictionary *)dictionary;
 
 @end
+
+@interface WWKeyValueInfo : WWBaseInfo
+
+@property (nonatomic, strong) NSString *key;
+@property (nonatomic, strong) NSString *value;
+
+@end

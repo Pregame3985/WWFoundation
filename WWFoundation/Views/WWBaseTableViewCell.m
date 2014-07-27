@@ -8,6 +8,14 @@
 
 #import "WWBaseTableViewCell.h"
 
+@interface WWBaseTableViewCell ()
+
+@property (nonatomic, weak) id<WWBaseViewDelegate> delegate;
+@property (nonatomic, strong) id<RIItemData> itemData;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+
+@end
+
 @implementation WWBaseTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -22,6 +30,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    self.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -31,7 +40,17 @@
     // Configure the view for the selected state
 }
 
+- (void)bindData:(id<RIItemData>)itemData
+{
+    self.itemData = itemData;
+    
+    [self.delegate fillData];
+}
+
 - (void)fillData
+{}
+
+- (void)viewDidTapped
 {}
 
 @end

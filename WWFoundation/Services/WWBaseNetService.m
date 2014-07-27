@@ -35,10 +35,8 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     return _wwParams;
 }
 
-- (void)addAuth
+- (void)addAuth:(NSString *)access
 {
-    NSString *access = [RIDataCenter sharedInstance].loginUserInfo.access;
-    
     if (access.length > 0)
     {
         [self addParam:@"access" value:access];
@@ -295,7 +293,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 
 - (ASIHTTPRequest *)createDeleteRequest:(NSString *)actionName data:(NSDictionary *)data
 {
-    NSURL *url = [self getAction:actionName];
+    NSURL *url = [self getAction:actionName params:data];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
@@ -309,9 +307,6 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     [request setDelegate:self];
     [request setTimeOutSeconds:self.timeout];
     
-    NSMutableDictionary *mutableData = [data mutableCopy];
-    
-    [request appendPostData:[mutableData.JSONString dataUsingEncoding:NSUTF8StringEncoding]];
     return request;
 }
 

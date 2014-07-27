@@ -10,6 +10,10 @@
 #import <objc/runtime.h>
 #import "NSManagedObject+InnerBand.h"
 
+@implementation WWKeyValueInfo
+
+@end
+
 @implementation WWBaseInfo
 
 @synthesize id = _id;

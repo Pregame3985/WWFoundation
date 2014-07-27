@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+WWFoundation.h"
+#import "WWBaseInfo.h"
 
-@interface WWBaseTableViewCell : UITableViewCell
+@interface WWBaseTableViewCell : UITableViewCell <WWBaseViewDelegate>
 
-- (void)fillData;
+@property (nonatomic, readonly) id<RIItemData> itemData;
+
+- (void)bindData:(id<RIItemData>)itemData;
 
 @end

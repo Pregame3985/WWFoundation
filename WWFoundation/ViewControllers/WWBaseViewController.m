@@ -73,7 +73,7 @@
         UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_navi_back_48_48"]
                                                                           style:UIBarButtonItemStyleBordered
                                                                          target:self
-                                                                             action:@selector(popViewController)];
+                                                                             action:@selector(back:)];
         
         self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     }

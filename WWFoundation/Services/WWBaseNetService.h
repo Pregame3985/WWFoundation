@@ -23,7 +23,7 @@ typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
 
 @interface WWParams : NSObject
 
-- (void)addAuth;
+- (void)addAuth:(NSString *)access;
 - (void)addParam:(NSString *)key value:(NSObject *)value;
 - (void)addParams:(NSString *)key values:(NSArray *)values;
 
