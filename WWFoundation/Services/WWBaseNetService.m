@@ -59,6 +59,14 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     }
 }
 
+- (void)addParam:(NSString *)key values:(NSArray *)values
+{
+    if (key.length > 0 && values.count > 0)
+    {
+        [self.wwParams setObject:values forKey:key];
+    }
+}
+
 - (void)addParams:(NSString *)key values:(NSArray *)values
 {
     if (key.length > 0 && values.count > 0)
@@ -161,12 +169,28 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
         
         for (NSString *key in [params allKeys])
         {
-            NSString *value = params[key];
+            id value = params[key];
             
-            if (value.length > 0)
+            if ([value isKindOfClass:[NSString class]])
             {
-                NSString *query = [NSString stringWithFormat:@"%@=%@", key, value];
-                [querys addObject:query];
+                NSString *stringValue = value;
+                if (stringValue.length > 0)
+                {
+                    NSString *query = [NSString stringWithFormat:@"%@=%@", key, [stringValue stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                    [querys addObject:query];
+                }
+            }
+            else if ([value isKindOfClass:[NSArray class]])
+            {
+                NSArray *arrayValues = value;
+                for (NSString *stringValue in arrayValues)
+                {
+                    if (stringValue.length > 0)
+                    {
+                        NSString *query = [NSString stringWithFormat:@"%@=%@", key, [stringValue stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                        [querys addObject:query];
+                    }
+                }
             }
         }
         
@@ -227,7 +251,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy | ASIAskServerIfModifiedWhenStaleCachePolicy];
     [request setDelegate:self];
     [request setTimeOutSeconds:self.timeout];
-
+    
     return request;
 }
 

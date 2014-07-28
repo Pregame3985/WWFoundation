@@ -25,6 +25,7 @@ typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
 
 - (void)addAuth:(NSString *)access;
 - (void)addParam:(NSString *)key value:(NSObject *)value;
+- (void)addParam:(NSString *)key values:(NSArray *)values;
 - (void)addParams:(NSString *)key values:(NSArray *)values;
 
 - (NSDictionary *)params;
