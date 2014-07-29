@@ -20,9 +20,6 @@
 - (void)saveAll:(NSArray *)objects;
 - (void)saveAllByPage:(NSArray *)objects pageNumber:(NSNumber *)pageNumber;
 
-- (void)update:(id<WWItemDataDelegate>)item;
-- (void)updateAll:(NSArray *)objects;
-
 - (void)remove:(id<WWItemDataDelegate>)item;
 - (void)removeAll:(NSArray *)objects;
 

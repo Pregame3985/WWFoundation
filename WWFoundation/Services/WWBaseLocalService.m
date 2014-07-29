@@ -10,4 +10,9 @@
 
 @implementation WWBaseLocalService
 
+- (void)save:(id<WWItemDataDelegate>)item
+{
+    [self save:item dataStore:nil];
+}
+
 @end
