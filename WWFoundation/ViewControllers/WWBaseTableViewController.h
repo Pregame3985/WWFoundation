@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, TableViewScrollingDirection)
 @interface WWBaseTableViewController : WWBaseViewController
 
 @property (nonatomic, unsafe_unretained) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *sectionArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSNumber *pageNum;
 @property (nonatomic, weak) UITableView *currentTableView;

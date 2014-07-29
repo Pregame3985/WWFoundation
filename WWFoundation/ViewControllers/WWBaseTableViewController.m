@@ -17,6 +17,16 @@
 
 @implementation WWBaseTableViewController
 
+- (NSMutableArray *)sectionArray
+{
+    if (!_sectionArray)
+    {
+        _sectionArray = [@[] mutableCopy];
+    }
+    
+    return _sectionArray;
+}
+
 - (NSMutableArray *)dataArray
 {
     if (!_dataArray)
@@ -40,14 +50,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.activeScrollView = self.tableView;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)applyStyle
+{
+    [super applyStyle];
+    
+    self.activeScrollView = self.tableView;
+    self.currentTableView = self.tableView;
 }
 
 - (void)prepareData
