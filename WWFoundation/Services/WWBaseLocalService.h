@@ -16,6 +16,7 @@
 - (id<WWItemDataDelegate>)load:(id<WWItemDataDelegate>)item;
 
 - (void)save:(id<WWItemDataDelegate>)item;
+- (void)save:(id<WWItemDataDelegate>)item dataStore:(IBCoreDataStore *)dataStore;
 - (void)saveAll:(NSArray *)objects;
 - (void)saveAllByPage:(NSArray *)objects pageNumber:(NSNumber *)pageNumber;
 
