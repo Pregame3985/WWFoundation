@@ -12,6 +12,8 @@
 @interface WWBaseTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) ODRefreshControl *refreshControl;
+@property (nonatomic, strong) NSDate *lastRefreshTime;
+@property (nonatomic, strong) NSDate *lastLoadMoreTime;
 
 @end
 
@@ -73,11 +75,13 @@
 - (void)refreshView
 {
     self.pageNum = @1;
+    self.lastRefreshTime = [NSDate date];
 }
 
 - (void)loadMoreView
 {
     self.pageNum = @(self.pageNum.integerValue + 1);
+    self.lastLoadMoreTime = [NSDate date];
 }
 
 /*
