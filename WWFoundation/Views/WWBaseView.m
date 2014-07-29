@@ -11,7 +11,7 @@
 @interface WWBaseView ()
 
 @property (nonatomic, weak) id<WWBaseViewDelegate> delegate;
-@property (nonatomic, strong) id<RIItemData> itemData;
+@property (nonatomic, strong) id<WWItemDataDelegate> itemData;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @end
@@ -61,7 +61,7 @@
     [super removeFromSuperview];
 }
 
-- (void)bindData:(id<RIItemData>)itemData
+- (void)bindData:(id<WWItemDataDelegate>)itemData
 {
     self.itemData = itemData;
     

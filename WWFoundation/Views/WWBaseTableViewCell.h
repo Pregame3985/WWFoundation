@@ -12,8 +12,8 @@
 
 @interface WWBaseTableViewCell : UITableViewCell <WWBaseViewDelegate>
 
-@property (nonatomic, readonly) id<RIItemData> itemData;
+@property (nonatomic, readonly) id<WWItemDataDelegate> itemData;
 
-- (void)bindData:(id<RIItemData>)itemData;
+- (void)bindData:(id<WWItemDataDelegate>)itemData;
 
 @end

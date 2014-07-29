@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "IBCoreDataStore.h"
 
-@protocol RIItemData <NSObject>
+@protocol WWItemDataDelegate <NSObject>
 
 @property (nonatomic, strong) NSNumber *id;
 @property (nonatomic, strong) NSString *uuid;
@@ -19,7 +19,7 @@
 
 @end
 
-@interface WWBaseInfo : NSObject <RIItemData>
+@interface WWBaseInfo : NSObject <WWItemDataDelegate>
 
 @end
 
