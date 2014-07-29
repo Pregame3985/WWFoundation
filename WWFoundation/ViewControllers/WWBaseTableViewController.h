@@ -21,14 +21,14 @@ typedef NS_ENUM(NSInteger, TableViewScrollingDirection)
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSNumber *pageNum;
 @property (nonatomic, weak) UITableView *currentTableView;
-@property (nonatomic, readonly) NSDate *lastRefreshTime;
-@property (nonatomic, readonly) NSDate *lastLoadMoreTime;
+@property (nonatomic, strong) NSDate *lastLoadMoreTime;
 
 - (void)reloadView;
 - (void)reloadView:(BOOL)cleanUp;
 - (void)refreshView;
 - (void)loadMoreView;
 
+- (void)setAllowingTransparentFootView:(BOOL)allowingTransparentFootView;
 - (void)setAllowingPullRefreshing:(BOOL)allowingPullRefreshing;
 
 @end

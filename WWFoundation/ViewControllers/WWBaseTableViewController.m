@@ -12,8 +12,6 @@
 @interface WWBaseTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) ODRefreshControl *refreshControl;
-@property (nonatomic, strong) NSDate *lastRefreshTime;
-@property (nonatomic, strong) NSDate *lastLoadMoreTime;
 
 @end
 
@@ -75,13 +73,12 @@
 - (void)refreshView
 {
     self.pageNum = @1;
-    self.lastRefreshTime = [NSDate date];
+    self.lastLoadMoreTime = [NSDate date];
 }
 
 - (void)loadMoreView
 {
     self.pageNum = @(self.pageNum.integerValue + 1);
-    self.lastLoadMoreTime = [NSDate date];
 }
 
 /*
@@ -94,6 +91,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)setAllowingTransparentFootView:(BOOL)allowingTransparentFootView
+{
+    UIView *footView = [[UIView alloc] init];
+    footView.backgroundColor = [UIColor clearColor];
+    [self.currentTableView setTableFooterView:footView];
+}
 
 - (void)setAllowingPullRefreshing:(BOOL)allowingPullRefreshing
 {
