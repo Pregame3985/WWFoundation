@@ -15,4 +15,9 @@
     [self save:item dataStore:nil];
 }
 
+- (void)remove:(id<WWItemDataDelegate>)item
+{
+    [self remove:item dataStore:nil];
+}
+
 @end

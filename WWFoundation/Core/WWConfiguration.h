@@ -19,10 +19,10 @@
 #endif
 
 #ifdef API_ENVIRONMENT_DEVELOPMENT
-#define DOMAIN_HOST     @"http://api.rippling.club:8282"
+#define DOMAIN_HOST     @"http://api.rippling.club:8080"
 #define IAP_URL         @"https://sandbox.itunes.apple.com/verifyReceipt"
 #else
-#define DOMAIN_HOST     @"http://api.rippling.club:8282"
+#define DOMAIN_HOST     @"http://api.rippling.club:8080"
 //#define DOMAIN_HOST     @"http://api.rippling.com"
 #define IAP_URL         @"https://buy.itunes.apple.com/verifyReceipt"
 #endif

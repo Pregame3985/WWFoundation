@@ -21,6 +21,7 @@
 - (void)saveAllByPage:(NSArray *)objects pageNumber:(NSNumber *)pageNumber;
 
 - (void)remove:(id<WWItemDataDelegate>)item;
+- (void)remove:(id<WWItemDataDelegate>)item dataStore:(IBCoreDataStore *)dataStore;
 - (void)removeAll:(NSArray *)objects;
 
 @end
