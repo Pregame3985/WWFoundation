@@ -39,6 +39,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    
     [self applyStyle];
     
     [self prepareData];
@@ -71,8 +73,8 @@
     {
         
         UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_navi_back_48_48"]
-                                                                          style:UIBarButtonItemStyleBordered
-                                                                         target:self
+                                                                              style:UIBarButtonItemStyleBordered
+                                                                             target:self
                                                                              action:@selector(back:)];
         
         self.navigationItem.leftBarButtonItem = leftBarButtonItem;
@@ -80,6 +82,15 @@
 }
 
 - (void)prepareData
+{}
+
+- (void)reloadView
+{}
+
+- (void)reloadView:(BOOL)cleanUp
+{}
+
+- (void)refreshView
 {}
 
 - (void)popViewController
@@ -180,7 +191,7 @@
     UIEdgeInsets contentInsets = self.activeScrollView.contentInset;
     contentInsets.bottom = kbSize.height;
     
-//    UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    //    UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
     self.activeScrollView.scrollIndicatorInsets = contentInsets;
     self.activeScrollView.contentInset = contentInsets;
     
@@ -205,7 +216,7 @@
     UIEdgeInsets contentInsets = self.activeScrollView.contentInset;
     contentInsets.bottom -= kbSize.height;
     
-//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    //    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.activeScrollView.contentInset = contentInsets;
     self.activeScrollView.scrollIndicatorInsets = contentInsets;
 }

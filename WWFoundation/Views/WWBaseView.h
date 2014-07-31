@@ -14,6 +14,10 @@
 - (void)fillData;
 - (void)viewDidTapped;
 
+@optional
+- (void)prepareForReuse;
+- (void)applyStyle;
+
 @end
 
 @interface WWBaseView : UIView <WWBaseViewDelegate>

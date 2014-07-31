@@ -25,6 +25,10 @@
 - (void)prepareData;
 - (void)resigenKeyBoard;
 
+- (void)reloadView;
+- (void)reloadView:(BOOL)cleanUp;
+- (void)refreshView;
+
 - (IBAction)back:(UIButton *)sender;
 - (IBAction)cancel:(UIButton *)sender;
 

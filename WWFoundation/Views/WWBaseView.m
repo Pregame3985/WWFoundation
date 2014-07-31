@@ -65,8 +65,18 @@
 {
     self.itemData = itemData;
     
+    [self.delegate prepareForReuse];
+    
+    [self.delegate applyStyle];
+    
     [self.delegate fillData];
 }
+
+- (void)prepareForReuse
+{}
+
+- (void)applyStyle
+{}
 
 - (void)fillData
 {}
