@@ -156,4 +156,7 @@
     return self;
 }
 
+- (void)mapping:(id)data
+{}
+
 @end

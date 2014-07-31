@@ -17,6 +17,9 @@
 @property (nonatomic, strong) NSNumber *updated_time;
 @property (nonatomic, strong) NSNumber *published_time;
 
+@required
+- (void)mapping:(id)data;
+
 @end
 
 @interface WWBaseInfo : NSObject <WWItemDataDelegate>

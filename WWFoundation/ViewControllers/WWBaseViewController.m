@@ -78,6 +78,10 @@
                                                                              action:@selector(back:)];
         
         self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+        
+        if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+            self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+        }
     }
 }
 
