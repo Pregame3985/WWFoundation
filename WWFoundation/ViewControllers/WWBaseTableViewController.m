@@ -37,6 +37,16 @@
     return _dataArray;
 }
 
+- (NSMutableArray *)filteredDataArray
+{
+    if (!_filteredDataArray)
+    {
+        _filteredDataArray = [@[] mutableCopy];
+    }
+    
+    return _filteredDataArray;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -64,6 +74,14 @@
     
     self.activeScrollView = self.tableView;
     self.currentTableView = self.tableView;
+    
+    // There is different bg color in Bounce area when search bar inside tableview
+    if (self.searchDisplayController.searchBar)
+    {
+        UIView *backgroundView = [[UIView alloc] initWithFrame:self.currentTableView.bounds];
+        backgroundView.backgroundColor = [UIColor clearColor];
+        self.currentTableView.backgroundView = backgroundView;
+    }
 }
 
 - (void)prepareData

@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, TableViewScrollingDirection)
 @property (nonatomic, unsafe_unretained) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *sectionArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *filteredDataArray;    // When search bar inside 
 @property (nonatomic, strong) NSNumber *pageNum;
 @property (nonatomic, weak) UITableView *currentTableView;
 @property (nonatomic, strong) NSDate *lastLoadMoreTime;
