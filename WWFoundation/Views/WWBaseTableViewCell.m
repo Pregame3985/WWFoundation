@@ -44,6 +44,8 @@
 {
     self.itemData = itemData;
     
+    [self.delegate applyStyle];
+    
     [self.delegate fillData];
 }
 

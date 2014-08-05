@@ -37,6 +37,16 @@
     return _dataArray;
 }
 
+- (NSMutableArray *)indexTitleArray
+{
+    if (!_indexTitleArray)
+    {
+        _indexTitleArray = [@[] mutableCopy];
+    }
+    
+    return _indexTitleArray;
+}
+
 - (NSMutableArray *)filteredDataArray
 {
     if (!_filteredDataArray)
