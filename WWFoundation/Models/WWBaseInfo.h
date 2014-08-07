@@ -40,7 +40,8 @@
 
 @interface WWKeyValueInfo : WWBaseInfo
 
+@property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) NSString *key;
-@property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong) NSObject *value;
 
 @end

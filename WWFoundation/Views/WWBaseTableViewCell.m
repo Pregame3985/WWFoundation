@@ -49,6 +49,9 @@
     [self.delegate fillData];
 }
 
+- (void)applyStyle
+{}
+
 - (void)fillData
 {}
 

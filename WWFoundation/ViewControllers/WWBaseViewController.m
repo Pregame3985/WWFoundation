@@ -10,13 +10,11 @@
 
 @interface WWBaseViewController () <UITextFieldDelegate, UITextViewDelegate>
 
-@property (nonatomic, strong) UIToolbar *editInputAccessoryView;
+@property (nonatomic, strong) UIInputView *editInputAccessoryView;
 
 @end
 
 @implementation WWBaseViewController
-
-@synthesize editInputAccessoryView = _editInputAccessoryView;
 
 - (void)dealloc
 {
@@ -139,15 +137,23 @@
 {
     if (!_editInputAccessoryView)
     {
-        _editInputAccessoryView = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.sizeW, 44.0f)];
-        
-        UIBarButtonItem *flexibleBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
-                                                                              action:@selector(resigenKeyBoard)];
-        _editInputAccessoryView.items = @[flexibleBar, right];
+        _editInputAccessoryView = [[UIInputView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.sizeW, 44.0f)];
+        UIView *container = [[UIView alloc] initWithFrame:_editInputAccessoryView.bounds];;
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setFrame:CGRectMake(240.0f, 4.0f, 80.0f, 40.0f)];
+        [button setTitle:NSLocalizedString(@"OK_BUTTON_KEY", @"确定") forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(doneWithButton) forControlEvents:UIControlEventTouchUpInside];
+        [button.titleLabel setFont:[UIFont font16]];
+        [container addSubview:button];
+        [_editInputAccessoryView addSubview:container];
     }
     
     return _editInputAccessoryView;
+}
+
+- (void)doneWithButton
+{
+    [self resigenKeyBoard];
 }
 
 - (void)registerForKeyboardNotifications

@@ -11,19 +11,16 @@
 
 @interface WWBaseViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UIImageView *backgroundView;
-
 @property (nonatomic, weak) UITextField *activeTextField;
 @property (nonatomic, weak) UITextView *activeTextView;
 @property (nonatomic, weak) UISearchBar *activeSearchBar;
 @property (nonatomic, weak) UIScrollView *activeScrollView;
-@property (nonatomic, readonly) UIToolbar *editInputAccessoryView;
-
+@property (nonatomic, readonly) UIInputView *editInputAccessoryView;
 @property (nonatomic, assign) BOOL observeKeyboard;
 
 - (void)applyStyle;
 - (void)prepareData;
-- (void)resigenKeyBoard;
+- (void)doneWithButton;
 
 - (void)reloadView;
 - (void)reloadView:(BOOL)cleanUp;
