@@ -18,6 +18,14 @@
 
 @implementation WWBaseView
 
+- (void)dealloc
+{
+    [self removeGestureRecognizer:self.tapGesture];
+    
+    self.tapGesture = nil;
+    self.delegate = nil;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -33,15 +41,6 @@
     [self addGestureRecognizer:self.tapGesture];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
@@ -50,16 +49,6 @@
  // Drawing code
  }
  */
-
-- (void)removeFromSuperview
-{
-    [self removeGestureRecognizer:self.tapGesture];
-    
-    self.tapGesture = nil;
-    self.delegate = nil;
-    
-    [super removeFromSuperview];
-}
 
 - (void)bindData:(id<WWItemDataDelegate>)itemData
 {
