@@ -167,14 +167,37 @@
 }
 
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (self.sectionArray.count > 1)
+    {
+        return self.sectionArray.count;
+    }
+    
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.sectionArray.count > 1)
+    {
+        NSArray *dataArray = self.dataArray[section];
+        
+        return dataArray.count;
+    }
+    
     return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return nil;
+}
+
+#pragma mark - UITableViewDelegate
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return self.indexTitleArray;
 }
 
 @end
