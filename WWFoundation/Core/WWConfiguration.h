@@ -18,25 +18,6 @@
 #define ENVIRONMENT_DEVELOPMENT_NOANALYTICS
 #endif
 
-#ifdef API_ENVIRONMENT_DEVELOPMENT
-#define DOMAIN_HOST     @"http://42.96.205.85:8080"
-#define IAP_URL         @"https://sandbox.itunes.apple.com/verifyReceipt"
-#else
-#define DOMAIN_HOST     @"http://42.96.205.85:8080"
-//#define DOMAIN_HOST     @"http://api.rippling.com"
-#define IAP_URL         @"https://buy.itunes.apple.com/verifyReceipt"
-#endif
-
-#define PPT_DETAIL_FILE_PATH        @"ppts/"
-#define DOC_DETAIL_FILE_PATH        @"docs/"
-#define THUMBNAIL_PATH              @"thumbnail/"
-#define MEDIA_DETAIL_FILE_PATH      @"medias/"
-
-#define CONF_IMAGE_SAVE_PATH        @"conf/"
-
-#define WEBDAV_USERNAME             @"test"
-#define WEBDAV_PASSWORD             @"1qaz2wsx"
-
 #endif
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)

@@ -90,7 +90,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 
 @interface WWBaseNetService () <ASIHTTPRequestDelegate>
 
-@property (nonatomic, assign) NSInteger version;
+@property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) OEMonitorService *monitorService;
 @property (nonatomic, strong) NSMutableDictionary *apiMonitors;
 @property (nonatomic, strong) Reachability *reachability;
@@ -123,7 +123,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     
     if (self)
     {
-        self.version     = 1;
+        self.version     = @"1";
         self.timeout     = 45.0f;
         self.monitorService = [[OEMonitorService alloc] init];
         self.actionBlocks = [@{} mutableCopy];
@@ -154,9 +154,9 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 - (NSURL *) getAction:(NSString *)actionName params:(NSDictionary *)params
 {
     NSString *theActionName = actionName;
-    if (self.version > 1)
+    if (self.version.length > 0)
     {
-        theActionName = [DOMAIN_HOST stringByAppendingFormat:@"/v%d%@", self.version, actionName];
+        theActionName = [DOMAIN_HOST stringByAppendingFormat:@"/v%@%@", self.version, actionName];
     }
     else
     {
