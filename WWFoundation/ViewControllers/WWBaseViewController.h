@@ -16,6 +16,7 @@
 @property (nonatomic, weak) UISearchBar *activeSearchBar;
 @property (nonatomic, weak) UIScrollView *activeScrollView;
 @property (nonatomic, readonly) UIInputView *editInputAccessoryView;
+@property (nonatomic, strong) UIFont *editInputAccessoryViewFont;
 @property (nonatomic, assign) BOOL observeKeyboard;
 
 - (void)applyStyle;

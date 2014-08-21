@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIView+WWFoundation.h"
 #import "WWBaseInfo.h"
+#import "WWBaseView.h"
 
 @interface WWBaseTableViewCell : UITableViewCell <WWBaseViewDelegate>
 

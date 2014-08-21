@@ -7,6 +7,7 @@
 //
 
 #import "WWBaseService.h"
+#import "WWBaseInfo.h"
 
 @protocol WWBaseLocalServiceDelegate <NSObject>
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+WWFoundation.h"
+#import "WWBaseInfo.h"
 
 @protocol WWBaseViewDelegate <NSObject>
 

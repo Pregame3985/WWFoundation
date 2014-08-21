@@ -143,7 +143,7 @@
         [button setFrame:CGRectMake(240.0f, 4.0f, 80.0f, 40.0f)];
         [button setTitle:NSLocalizedString(@"OK_BUTTON_KEY", @"确定") forState:UIControlStateNormal];
         [button addTarget:self action:@selector(doneWithButton) forControlEvents:UIControlEventTouchUpInside];
-        [button.titleLabel setFont:[UIFont font16]];
+        [button.titleLabel setFont:self.editInputAccessoryViewFont];
         [container addSubview:button];
         [_editInputAccessoryView addSubview:container];
     }

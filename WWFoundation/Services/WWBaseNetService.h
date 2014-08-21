@@ -32,6 +32,12 @@ typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
 
 @end
 
+@protocol WWBaseNetServiceDelegate <NSObject>
+
+- (NSString *)domainHost;
+
+@end
+
 @interface WWBaseNetService : WWBaseService
 
 @property (nonatomic, assign) NSTimeInterval timeout;
@@ -39,6 +45,7 @@ typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
 @property (nonatomic, strong) MultiActionBlock notLoginActionBlock;
 @property (nonatomic, strong) NSMutableDictionary *actionBlocks;
 @property (nonatomic, getter = isNetworkAvailable) BOOL networkAvailable;
+@property (nonatomic, assign) id<WWBaseNetServiceDelegate> netServiceDelegate;
 
 - (void) didReceiveMemoryWarning;
 
@@ -58,6 +65,10 @@ typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
 - (void) postActionWithActionName:(NSString *)actionName
                            params:(id)params
                          complete:(MultiActionBlock)complete;
+
+- (void) putActionWithActionName:(NSString *)actionName
+                          params:(id)params
+                        complete:(MultiActionBlock)complete;
 
 - (void) deleteActionWithActionName:(NSString *)actionName
                              params:(id)params

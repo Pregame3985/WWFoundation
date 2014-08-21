@@ -123,7 +123,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     
     if (self)
     {
-        self.version     = @"1";
+        self.version     = @"";
         self.timeout     = 45.0f;
         self.monitorService = [[OEMonitorService alloc] init];
         self.actionBlocks = [@{} mutableCopy];
@@ -156,11 +156,11 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     NSString *theActionName = actionName;
     if (self.version.length > 0)
     {
-        theActionName = [DOMAIN_HOST stringByAppendingFormat:@"/v%@%@", self.version, actionName];
+        theActionName = [[self.netServiceDelegate domainHost] stringByAppendingFormat:@"/v%@%@", self.version, actionName];
     }
     else
     {
-        theActionName = [DOMAIN_HOST stringByAppendingFormat:@"%@", actionName];
+        theActionName = [[self.netServiceDelegate domainHost] stringByAppendingFormat:@"%@", actionName];
     }
     
     if (params.count > 0)
@@ -206,6 +206,7 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     
 #ifdef API_ENVIRONMENT_DEVELOPMENT
     DLog(@"Request URL %@", url);
+    DLog(@"Request Params %@", [params description]);
 #endif
     
     return url;
@@ -315,6 +316,26 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     return request;
 }
 
+- (ASIHTTPRequest *)createPutRequest:(NSString *)actionName data:(id)data
+{
+    NSURL *url = [self getAction:actionName];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request addRequestHeader:@"Accept" value:@"application/json"];
+    [request addRequestHeader:@"Content-type" value:@"application/x-www-form-urlencoded"];
+    [request setRequestMethod:[self methodString:RESTFUL_METHOD_PUT]];
+    [request setDelegate:self];
+    [request setTimeOutSeconds:self.timeout];
+    
+    for (NSString *key in [((NSMutableDictionary *)data) allKeys])
+    {
+        [request setPostValue:((NSMutableDictionary *)data)[key] forKey:key];
+    }
+    
+    return request;
+}
+
 - (ASIHTTPRequest *)createDeleteRequest:(NSString *)actionName data:(NSDictionary *)data
 {
     NSURL *url = [self getAction:actionName params:data];
@@ -392,6 +413,30 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     if (self.isNetworkAvailable)
     {
         ASIHTTPRequest *request = [self createPostRequest:actionName data:params];
+        
+        [self.actionBlocks setObject:complete forKey:request.url];
+        
+        [request startAsynchronous];
+    }
+    else
+    {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"网络无法连接"};
+        NSError *error = [NSError errorWithDomain:kNetworkErrorDomain code:500 userInfo:userInfo];
+        
+        if (complete)
+        {
+            complete(nil, error);
+        }
+    }
+}
+
+- (void) putActionWithActionName:(NSString *)actionName
+                           params:(id)params
+                         complete:(MultiActionBlock)complete
+{
+    if (self.isNetworkAvailable)
+    {
+        ASIHTTPRequest *request = [self createPutRequest:actionName data:params];
         
         [self.actionBlocks setObject:complete forKey:request.url];
         
