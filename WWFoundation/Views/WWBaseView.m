@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) id<WWBaseViewDelegate> delegate;
 @property (nonatomic, strong) id<WWItemDataDelegate> itemData;
+@property (nonatomic, assign) NSUInteger index;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @end
@@ -31,6 +32,7 @@
     [super awakeFromNib];
     
     [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+    [self setFrame:self.contentView.bounds];
     [self addSubview:self.contentView];
     
     self.delegate = self;
@@ -52,7 +54,14 @@
 
 - (void)bindData:(id<WWItemDataDelegate>)itemData
 {
+    [self bindData:itemData atIndex:0];
+}
+
+- (void)bindData:(id<WWItemDataDelegate>)itemData atIndex:(NSUInteger)index
+{
     self.itemData = itemData;
+    
+    self.index = index;
     
     [self.delegate prepareForReuse];
     
