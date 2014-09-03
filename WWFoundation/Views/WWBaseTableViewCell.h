@@ -14,7 +14,10 @@
 @interface WWBaseTableViewCell : UITableViewCell <WWBaseViewDelegate>
 
 @property (nonatomic, readonly) id<WWItemDataDelegate> itemData;
+@property (nonatomic, readonly) NSUInteger index;
 
 - (void)bindData:(id<WWItemDataDelegate>)itemData;
+
+- (void)bindData:(id<WWItemDataDelegate>)itemData atIndex:(NSUInteger)index;
 
 @end

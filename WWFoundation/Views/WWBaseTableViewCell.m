@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) id<WWBaseViewDelegate> delegate;
 @property (nonatomic, strong) id<WWItemDataDelegate> itemData;
+@property (nonatomic, assign) NSUInteger index;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @end
@@ -42,7 +43,14 @@
 
 - (void)bindData:(id<WWItemDataDelegate>)itemData
 {
+    [self bindData:itemData atIndex:0];
+}
+
+- (void)bindData:(id<WWItemDataDelegate>)itemData atIndex:(NSUInteger)index
+{
     self.itemData = itemData;
+    
+    self.index = index;
     
     [self.delegate applyStyle];
     

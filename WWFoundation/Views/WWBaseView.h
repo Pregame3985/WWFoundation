@@ -26,6 +26,7 @@
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @property (nonatomic, readonly) id<WWItemDataDelegate> itemData;
 @property (nonatomic, readonly) NSUInteger index;
+@property (nonatomic, strong) NSString *viewIdentifier;
 
 - (void)bindData:(id<WWItemDataDelegate>)itemData;
 - (void)bindData:(id<WWItemDataDelegate>)itemData atIndex:(NSUInteger)index;
