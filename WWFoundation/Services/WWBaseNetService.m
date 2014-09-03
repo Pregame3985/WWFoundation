@@ -263,13 +263,22 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
     [request addRequestHeader:@"Accept" value:@"application/json"];
-    [request addRequestHeader:@"Content-type" value:@"application/x-www-form-urlencoded"];
+    [request addRequestHeader:@"Content-type" value:@"application/form-data"];
     [request setDelegate:self];
     [request setTimeOutSeconds:self.timeout];
     
     for (NSString *key in [((NSMutableDictionary *)data) allKeys])
     {
-        [request setPostValue:((NSMutableDictionary *)data)[key] forKey:key];
+        id<NSObject> object = ((NSMutableDictionary *)data)[key];
+        
+        if ([object isKindOfClass:[NSData class]])
+        {
+            [request setData:(NSData *)object withFileName:@"file.png" andContentType:@"image/png" forKey:key];
+        }
+        else
+        {
+            [request setPostValue:object forKey:key];
+        }
     }
     
     //    NSString *postString;
@@ -431,8 +440,8 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
 }
 
 - (void) putActionWithActionName:(NSString *)actionName
-                           params:(id)params
-                         complete:(MultiActionBlock)complete
+                          params:(id)params
+                        complete:(MultiActionBlock)complete
 {
     if (self.isNetworkAvailable)
     {

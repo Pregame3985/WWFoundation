@@ -44,4 +44,6 @@
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSObject *value;
 
+- (instancetype)initWithKey:(NSString *)key value:(NSString *)value;
+
 @end
