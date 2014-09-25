@@ -11,12 +11,14 @@
 
 #ifdef DEBUG
 #define API_ENVIRONMENT_DEVELOPMENT
-#define API_ENVIRONMENT_TESTING
+//#define API_ENVIRONMENT_TESTING
 #define API_DEBUG // control of api response print
 //#define LOCAL_DEBUG
 #define ENVIRONMENT_DEVELOPMENT
 #define ENVIRONMENT_DEVELOPMENT_NOANALYTICS
 #endif
+
+#define ENCRYPT_REQUEST
 
 #endif
 

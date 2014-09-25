@@ -36,6 +36,10 @@ typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
 
 - (NSString *)domainHost;
 
+@optional
+- (NSString *)secretKey;
+- (BOOL)resultCheck:(id)responseObject;
+
 @end
 
 @interface WWBaseNetService : WWBaseService

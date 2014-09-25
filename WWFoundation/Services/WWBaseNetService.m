@@ -14,8 +14,11 @@
 #import "WWConfiguration.h"
 #import "ASIDownloadCache.h"
 #import "JSONKit.h"
+#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonHMAC.h>
+#import "GTMBase64.h"
 
-NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
+NSString *const kNetworkErrorDomain = @"com.asset.network.error";
 
 @interface WWParams ()
 
@@ -256,6 +259,41 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     return request;
 }
 
+// Encode a string to embed in an URL.
+NSString* encodeToPercentEscapeString(NSString *string) {
+    return (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                              (CFStringRef) string,
+                                                              NULL,
+                                                              (CFStringRef) @"!*'();:@&=+$,/?%#[]",
+                                                              kCFStringEncodingUTF8));
+}
+
+// Decode a percent escape encoded string.
+NSString* decodeFromPercentEscapeString(NSString *string) {
+    return (NSString *)
+    CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                              (CFStringRef) string,
+                                                                              CFSTR(""),
+                                                                              kCFStringEncodingUTF8));
+}
+
+- (NSString *)hmacsha1:(NSString *)data secret:(NSString *)key {
+    
+    const char *cKey = [key cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
+    
+    CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
+    
+    NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
+    
+    NSString *hash = [GTMBase64 stringByEncodingData:HMAC];
+    
+    return hash;
+}
+
 - (ASIHTTPRequest *)createPostRequest:(NSString *)actionName data:(id)data
 {
     NSURL *url = [self getAction:actionName];
@@ -267,60 +305,49 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     [request setDelegate:self];
     [request setTimeOutSeconds:self.timeout];
     
-    for (NSString *key in [((NSMutableDictionary *)data) allKeys])
+    NSMutableDictionary *sigData = [data mutableCopy];
+    
+#ifdef ENCRYPT_REQUEST
+    long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
+    sigData[@"timestamp"] = [NSString stringWithFormat:@"%lld", timestamp];
+#endif
+    
+    NSArray *sortedKeys = [[sigData allKeys] sortedArrayUsingSelector: @selector(compare:)];
+    NSMutableArray *sortedPlainComponents = [@[] mutableCopy];
+    
+    for (NSString *key in sortedKeys)
     {
         id<NSObject> object = ((NSMutableDictionary *)data)[key];
         
-        if ([object isKindOfClass:[NSData class]])
+        if (object && [object isKindOfClass:[NSData class]])
         {
             [request setData:(NSData *)object withFileName:@"file.png" andContentType:@"image/png" forKey:key];
         }
         else
         {
-            [request setPostValue:object forKey:key];
+            if (object)
+            {
+                [request setPostValue:object forKey:key];
+            }
+            else
+            {
+                object = sigData[key];
+            }
+#ifdef ENCRYPT_REQUEST
+            [sortedPlainComponents addObject:[@[key, object] componentsJoinedByString:@"="]];
+#endif
         }
     }
     
-    //    NSString *postString;
+#ifdef ENCRYPT_REQUEST
+    NSString *encodingURL = encodeToPercentEscapeString(actionName);
+    NSString *escapingString = encodeToPercentEscapeString([sortedPlainComponents componentsJoinedByString:@"&"]);
+    NSString *baseString = [@[@"POST", encodingURL, escapingString] componentsJoinedByString:@"&"];
     
-    //    if ([data isKindOfClass:[NSDictionary class]])
-    //    {
-    //        OEUserInfo *userInfo = [OEAppDelegate sharedAppDelegate].userInfo;
-    //
-    //        NSString *hashKey = [NSString stringWithFormat:@"%@+%d", url.absoluteString, userInfo.id.intValue].md5;
-    //
-    //        OEMonitorInfo *apiMonitor = [OEAppDelegate sharedAppDelegate].apiMonitors[hashKey];
-    //
-    //        NSMutableDictionary *mutableData = [data mutableCopy];
-    //
-    //        if (![actionName isEqualToString:kSearchConfAction])
-    //        {
-    //            if (apiMonitor)
-    //            {
-    //                mutableData[@"last_update_time"] = @(apiMonitor.last_update_time.timeIntervalSince1970);
-    //            }
-    //            else
-    //            {
-    //                mutableData[@"last_update_time"] = @(0);
-    //            }
-    //        }
-    //
-    //        postString = mutableData.JSONString;
-    //    }
-    //    else if ([data isKindOfClass:[NSArray class]])
-    //    {
-    //        postString = ((NSArray *)data).JSONString;
-    //    }
-    //    else
-    //    {
-    //        assert(@"Params invalid");
-    //    }
-    
-    //#ifdef API_ENVIRONMENT_DEVELOPMENT
-    //    DLog(@"Post data %@", postString);
-    //#endif
-    //
-    //    [request appendPostData:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *sig = [self hmacsha1:baseString secret:[self.netServiceDelegate secretKey]];
+    [request addRequestHeader:@"sig" value:sig];
+    [request addRequestHeader:@"timestamp" value:sigData[@"timestamp"]];
+#endif
     
     return request;
 }
@@ -510,7 +537,17 @@ NSString *const kNetworkErrorDomain = @"com.rippling.network.error";
     }
     else
     {
-        if ([responseObject[@"state"] integerValue] == 1)
+        BOOL state = NO;
+        if (self.netServiceDelegate && [self.netServiceDelegate respondsToSelector:@selector(resultCheck:)])
+        {
+            state = [self.netServiceDelegate resultCheck:responseObject];
+        }
+        else
+        {
+            state = [responseObject[@"state"] integerValue] == 1;
+        }
+        
+        if (state)
         {
             NSDictionary *extra = responseObject[@"extra"];
             if (extra)

@@ -62,7 +62,9 @@
  */
 
 - (void)applyStyle
-{   
+{
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
     NSArray *viewControllers = [self.navigationController viewControllers];
     
     if (self != viewControllers[0])
