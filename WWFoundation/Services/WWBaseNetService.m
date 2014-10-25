@@ -13,7 +13,6 @@
 #import "OEMonitorService.h"
 #import "WWConfiguration.h"
 #import "ASIDownloadCache.h"
-#import "JSONKit.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonHMAC.h>
 #import "GTMBase64.h"
@@ -255,6 +254,34 @@ NSString *const kNetworkErrorDomain = @"com.asset.network.error";
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy | ASIAskServerIfModifiedWhenStaleCachePolicy];
     [request setDelegate:self];
     [request setTimeOutSeconds:self.timeout];
+    
+    NSMutableDictionary *sigData = [data mutableCopy];
+    
+#ifdef ENCRYPT_REQUEST
+    long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
+    sigData[@"timestamp"] = [NSString stringWithFormat:@"%lld", timestamp];
+#endif
+    
+    NSArray *sortedKeys = [[sigData allKeys] sortedArrayUsingSelector: @selector(compare:)];
+    NSMutableArray *sortedPlainComponents = [@[] mutableCopy];
+    
+    for (NSString *key in sortedKeys)
+    {
+        id<NSObject> object = ((NSMutableDictionary *)sigData)[key];
+#ifdef ENCRYPT_REQUEST
+        [sortedPlainComponents addObject:[@[key, object] componentsJoinedByString:@"="]];
+#endif
+    }
+    
+#ifdef ENCRYPT_REQUEST
+    NSString *encodingURL = encodeToPercentEscapeString(actionName);
+    NSString *escapingString = encodeToPercentEscapeString([sortedPlainComponents componentsJoinedByString:@"&"]);
+    NSString *baseString = [@[@"GET", encodingURL, escapingString] componentsJoinedByString:@"&"];
+    
+    NSString *sig = [self hmacsha1:baseString secret:[self.netServiceDelegate secretKey]];
+    [request addRequestHeader:@"sig" value:sig];
+    [request addRequestHeader:@"timestamp" value:sigData[@"timestamp"]];
+#endif
     
     return request;
 }
@@ -521,7 +548,11 @@ NSString* decodeFromPercentEscapeString(NSString *string) {
     DLog(@"网络请求返回的数据:%@",request.responseString);
 #endif
     
-    NSDictionary *responseObject = [request.responseString objectFromJSONString];
+//    NSDictionary *responseObject = [request.responseString objectFromJSONString];
+    
+    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:[request.responseString dataUsingEncoding:NSUTF8StringEncoding]
+                                    options:NSJSONReadingAllowFragments
+                                      error:nil];
     
     MultiActionBlock actionBlock = self.actionBlocks[request.url];
     

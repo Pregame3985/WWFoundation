@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, RESTfulMethod)
 	RESTFUL_METHOD_DELETE = 3
 };
 
-typedef void (^MultiActionBlock) (NSDictionary *result, NSError *error);
+typedef void (^MultiActionBlock) (NSDictionary *, NSError *);
 
 @interface WWParams : NSObject
 

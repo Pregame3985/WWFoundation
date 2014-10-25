@@ -24,6 +24,8 @@
 
 @interface WWBaseInfo : NSObject <WWItemDataDelegate>
 
+- (instancetype)parse:(NSString *)jsonObject;
+
 @end
 
 @interface WWBaseInfo (Utils)

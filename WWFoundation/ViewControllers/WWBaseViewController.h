@@ -11,6 +11,7 @@
 
 @interface WWBaseViewController : UIViewController
 
+@property (nonatomic, weak) id<WWItemDataDelegate> data;
 @property (nonatomic, weak) UITextField *activeTextField;
 @property (nonatomic, weak) UITextView *activeTextView;
 @property (nonatomic, weak) UISearchBar *activeSearchBar;

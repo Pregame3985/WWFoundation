@@ -35,6 +35,11 @@
 @synthesize updated_time = _updated_time;
 @synthesize published_time = _published_time;
 
+- (instancetype)parse:(NSString *)jsonObject
+{
+    return nil;
+}
+
 - (id) toCoreDataEntity:(Class)entityType inStore:(IBCoreDataStore *)dataStore
 {
 	return [self updateCoreDataEntity:[entityType createInStore:dataStore]];
